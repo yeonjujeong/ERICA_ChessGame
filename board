@@ -1,0 +1,13 @@
+def CCB():
+	for i in range(0,9):
+		garo()
+		sero()
+	return garo()
+
+def garo():
+	print(" --" *9)
+def sero():
+	print("|  "*10)
+
+print(CCB())
+	
