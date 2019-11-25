@@ -1,0 +1,8 @@
+def printBoard():
+	print(  a  |  b  |  c  |  d  |  e  |  f  |  g  |  h  |")
+
+	for i in range(0,8):
+		print("-- "*16)
+		print(" | "*16)
+		print(i)
+print(printBoard())
