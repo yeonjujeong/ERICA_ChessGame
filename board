@@ -3,11 +3,19 @@ def CCB():
 		garo()
 		sero()
 	return garo()
+<<<<<<< HEAD
 
 def garo():
 	print(" --" *9)
+=======
+def garo():
+	print(" --"*9)
+>>>>>>> f1d46a76439c428145e89deb8d335a9fbc9514e1
 def sero():
 	print("|  "*10)
 
 print(CCB())
+<<<<<<< HEAD
 	
+=======
+>>>>>>> f1d46a76439c428145e89deb8d335a9fbc9514e1
