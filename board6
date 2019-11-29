@@ -103,70 +103,34 @@ def Board():
     C_BLUE   = "\033[34m"
 
     
+print("   ",end='')
+
+ for i in range(9):
+
+       	print(str(i+1)+"열  ",end="")
+
+    print('\n')
 
     for i in range(0,10):
 
- 
-
         print(chr(65+i)+'행 ',end='')
-
- 
 
         for j in range(0,9):
 
- 
-
             if(j!=8):
 
-                if(arr_red[i][j]=="0 " and arr_blue[i][j]=="0 "):
-
-                    print(C_WHITE+"0  - ",end="")
-
-                    
-
-                elif(arr_red[i][j]=="0 "):
-
-                    print(C_BLUE+ arr_blue[i][j]+C_WHITE+" - ",end="")
-
-                    
-
-                elif(arr_blue[i][j]=="0 "):
-
-                    print(C_RED + arr_red[i][j]+C_WHITE+" - ",end="")
-
- 
-
-                
-
- 
+                print(arr[i][j]+" - ",end="")
 
             elif(j==8):
 
- 
-
-                if(arr_red[i][j]=="0 " and  arr_blue[i][j]=="0 "):
-
-                    print(C_WHITE+"0  - ")
-
-                    
-
-                elif(arr_red[i][j]=="0 "):
-
-                    print(C_BLUE+ arr_blue[i][j]+C_WHITE+" - ")
-
-                    
-
-                elif(arr_blue[i][j]=="0 "):
-
-                    print(C_RED + arr_red[i][j]+C_WHITE+" - ")
-
- 
+                print(arr[i][j],end="\n")
 
         if(i!=9):
 
- 
-
             print("    |"*9)
+
+
+
 
  
 
