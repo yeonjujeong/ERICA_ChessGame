@@ -176,11 +176,12 @@ def Board(x,y):
 
     for i in range(0,10):
 
-        print(chr(65+i)+'행 ',end='')
+        print(chr(65+i)+'행 ',end='') 
 
-        for j in range(0,9):
+	for j in range(0,9):
 
-            if(j!=8):
+        
+	    if(j!=8):
 
                 if(arr_red[i][j]=="0 " and arr_blue[i][j]=="0 "):
 
@@ -194,48 +195,41 @@ def Board(x,y):
 
                     print(C_RED + arr_red[i][j]+C_WHITE+" - ",end="")
 
-            elif(j==8):
-
+	
+	    elif(j==8):
+	
                 if(arr_red[i][j]=="0 " and  arr_blue[i][j]=="0 "):
 
                     print(C_WHITE+"*  - ")
 
                 elif(arr_red[i][j]=="0 "):
 
-                    print(C_BLUE+ arr_blue[i][j]+C_WHITE+" - ")  
+                    print(C_BLUE+arr_blue[i][j]+C_WHITE+end="\n")   
 
                 elif(arr_blue[i][j]=="0 "):
 
-                    print(C_RED + arr_red[i][j]+C_WHITE+" - ")
+                    print(C_RED + arr_red[i][j],+ C_WHITE+ end="\n")
 
         if(i!=9):
 
             print("    |"*9)
-print(arr_blue)
-print(arr_red)
 
 def main():
     print("장기하 자.")
     x = input("Player 1의 상차림을 선택하세요 (안상차림 = 1/바깥상차림 = 2/오른상차림 = 3/왼상차림 = 4):")
     y = input("Player 2의 상차림을 선택하세요 (안상차림 = 1/바깥상차림 = 2/오른상차림 = 3/왼상차림 = 4):")
    
-    if(x == 1):
-        return(x==1)
-    elif(x == 2):
-        print(arr_red)
-    elif(x == 3):
-        print(x==3)
-    elif(x == 4):
-        print(x==4)
-    if(y == 1):
-        print(y==1)
-    elif(y == 2):
-        print(y==2)
-    elif(y == 3):
-        print(y==3)
-    elif(y == 4):
-        print(y==4)
+ 
+
+#얘들아 내가 커밋한 defboard봐봐
+#여기서 어떻게 출력해야되는지 잘 모르겠음 
+
+
+
+
+
     Board(x,y)
+
 
 
     a1 = input("이동시킬 말의 행과 열을 입력하시오.\n몇 행?: ")
