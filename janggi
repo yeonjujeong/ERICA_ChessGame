@@ -94,7 +94,7 @@ def Board():
                     print(C_RED+arr_red[i][j]+C_WHITE+" - ",end="")
             elif(j==8):
                 if(arr_red[i][j]=="* " and  arr_blue[i][j]=="* "):
-                    print(C_WHITE+"*  - ")
+                    print(C_WHITE+"*   ")
                 elif(arr_red[i][j]=="* "):
                     print(C_BLUE+arr_blue[i][j]+C_WHITE)   
                 elif(arr_blue[i][j]=="* "):
