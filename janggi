@@ -87,7 +87,7 @@ def Board():
     C_RED    = "\033[31m"
     C_BLUE   = "\033[34m"
     for i in range(0,10):
-        print(i+1,'행 ',end='') 
+        print(chr(i+65)+'행 ',end='') 
         for j in range(0,9):
             if(j!=8):
                 if(arr_red[i][j]=="* " and arr_blue[i][j]=="* "):
