@@ -109,17 +109,79 @@ def Board():
 
 def main():
     print("장기하-자.")
-    x = input("Player 1의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):")
-    y = input("Player 2의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):")
+
+
+	
+    try:
+        x = int(input("Player 1의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
+        if(x>4): raise IndexError
+    except IndexError:
+        print("범위를 벗어났습니다. 다시 입력해주세요.")
+
+    except ValueError as e:
+        print(e, "숫자를 입력해 주세요")
+
+    try:
+        y = int(input("Player 2의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
+        if(y>4): raise IndexError
+    except IndexError:
+        print("범위를 벗어났습니다. 다시 입력해주세요.")
+
+    except ValueError as e:
+        print(e, "숫자를 입력해 주세요")
     Select_red_board(x)
     Select_blue_board(y)
     Board()
-    a1 = input("이동시킬 말의 행과 열을 입력하시오.\n몇 행?: ")
-    a2 = input("몇 열?: ")
-    b1 = input("이동할 행과 열을 입력하시오.\n몇 행?: ")
-    b2 = input("몇 열?: ")
+    try:
+        a1 = input("이동시킬 말의 행과 열을 입력하시오.\n몇 행?: ")
+        if('a1' > chr(75)) : raise IndexError
+    except IndexError:
+        print("범위를 벗어났습니다. 다시 입력해주세요.")	
+    except ValueError as e:
+        print(e, "문자를 입력해 주세요")
+    try:
+        a2 = int(input("몇 열?: "))
+        if(a2 > 9): raise IndexError
+    except IndexError:
+        print("범위를 벗어났습니다. 다시 입력해주세요.")
+    except ValueError as e:
+        print(e, "숫자를 입력해 주세요")
+    
+    try:
+        b1 = input("이동시킬 말의 행과 열을 입력하시오.\n몇 행?: ")
+        if('b1' > chr(75)) : raise IndexError
+    except IndexError:
+        print("범위를 벗어났습니다. 다시 입력해주세요.")	
+    except ValueError as e:
+        print(e, "문자를 입력해 주세요")
+    try:
+        b2 = int(input("몇 열?: "))
+        if(b2 > 9): raise IndexError
+    except IndexError:
+        print("범위를 벗어났습니다. 다시 입력해주세요.")
+    except ValueError as e:
+        print(e, "숫자를 입력해 주세요")
 
-   
+
+'''
+예외처리
+p1 상차림 숫자 1 2 3 4 아닐경우
+p1 상차림 숫자 입력이 아닌경우(정수로 입력받았을 경우)
+p2 상차림 숫자 1 2 3 4 아닐경우
+p1 상차림 숫자 입력이 아닌경우(정수로 입력받았을 경우)
+말과 행을 입력받을 때
+숫자 입력이 아닌 경우
+행을 벗어난 경우
+열을 벗어난 경우까지 했음
+
+정민 이거 위에 while True:이렇게 해야 틀리면 다시 쓰게 할듯
+그리고 지금 열, 숫자, 문자 이거는 다 작동하는 것 같은디 행이 좀
+이상하거든? 이거 좀 고쳐주센
+'''
+
+
+
+
 
 main()  
 
