@@ -1,6 +1,7 @@
-#arr defBoard not run,,,
+
 arr_red =[["* " for i in range(9)] for i in range(10)]
 arr_blue = [["* " for i in range(9)] for i in range(10)]
+
 def Select_red_board(x):
 	#Board_select_fuction
     #basic_red
@@ -11,8 +12,10 @@ def Select_red_board(x):
     arr_red[1][4] = "漢"
     arr_red[2][1] = "包"
     arr_red[2][7] = "包"
+
     for i in range(5):
         arr_red[3][i*2] = "兵"
+
     if(x=="1"):
         arr_red[0][1] = "馬"
         arr_red[0][7] = "馬"
@@ -46,6 +49,7 @@ def Select_blue_board(y):
     arr_blue[8][4] = "楚"
     arr_blue[7][1] = "包"
     arr_blue[7][7] = "包"
+
     for i in range(5):
         arr_blue[6][i*2] = "卒"
 
@@ -83,7 +87,7 @@ def Board():
     C_RED    = "\033[31m"
     C_BLUE   = "\033[34m"
     for i in range(0,10):
-        print(chr(65+i)+'행 ',end='') 
+        print(i+1,'행 ',end='') 
         for j in range(0,9):
             if(j!=8):
                 if(arr_red[i][j]=="* " and arr_blue[i][j]=="* "):
@@ -101,13 +105,14 @@ def Board():
                     print(C_RED+arr_red[i][j]+C_WHITE)
         if(i!=9):
             print("    |"*9)
+    print('\n')
 
 def main():
     print("장기하-자.")
     x = input("Player 1의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):")
     y = input("Player 2의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):")
-    arr_red = Select_red_board(x)
-    arr_blue = Select_blue_board(y)
+    Select_red_board(x)
+    Select_blue_board(y)
     Board()
     a1 = input("이동시킬 말의 행과 열을 입력하시오.\n몇 행?: ")
     a2 = input("몇 열?: ")
