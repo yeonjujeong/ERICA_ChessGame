@@ -1,9 +1,9 @@
 #arr defBoard not run,,,
-
-def select_Board(x,y):
+arr_red =[["* " for i in range(9)] for i in range(10)]
+arr_blue = [["* " for i in range(9)] for i in range(10)]
+def Select_red_board(x):
 	#Board_select_fuction
     #basic_red
-    arr_red =[["* " for i in range(9)] for i in range(10)]
     arr_red[0][0] = "車"
     arr_red[0][8] = "車"
     arr_red[0][3] = "士"
@@ -12,33 +12,33 @@ def select_Board(x,y):
     arr_red[2][1] = "包"
     arr_red[2][7] = "包"
     for i in range(5):
-        arr_red[3][i] = "兵"
-    if(x=="안"):
+        arr_red[3][i*2] = "兵"
+    if(x=="1"):
         arr_red[0][1] = "馬"
         arr_red[0][7] = "馬"
         arr_red[0][2] = "象"
         arr_red[0][6] = "象"
  
-    elif(x=="바깥"):
+    elif(x=="2"):
         arr_red[0][2] = "馬"
         arr_red[0][6] = "馬"
         arr_red[0][1] = "象"
         arr_red[0][7] = "象"
         
-    elif(x=="오른"):
+    elif(x=="3"):
         arr_red[0][2] = "馬"
         arr_red[0][7] = "馬"
         arr_red[0][1] = "象"
         arr_red[0][6] = "象"
        
-    elif(x=="왼"):
+    elif(x=="4"):
         arr_red[0][1] = "馬"
         arr_red[0][6] = "馬"
         arr_red[0][2] = "象"
         arr_red[0][7] = "象"
-       
+
+def Select_blue_board(y):
     #basic_blue
-    arr_blue = [["* " for i in range(9)] for i in range(10)]
     arr_blue[9][0] = "車"
     arr_blue[9][8] = "車"
     arr_blue[9][3] = "士"
@@ -47,27 +47,27 @@ def select_Board(x,y):
     arr_blue[7][1] = "包"
     arr_blue[7][7] = "包"
     for i in range(5):
-        arr_blue[6][i] = "卒"
+        arr_blue[6][i*2] = "卒"
 
-    if(y=="안"):
+    if(y=="1"):
         arr_blue[9][1] = "馬"
         arr_blue[9][7] = "馬"
         arr_blue[9][2] = "象"
         arr_blue[9][6] = "象"
         
-    elif(y=="바깥"):
+    elif(y=="2"):
         arr_blue[9][2] = "馬"
         arr_blue[9][6] = "馬"
         arr_blue[9][1] = "象"
         arr_blue[9][7] = "象"
 
-    elif(y=="오른"):
+    elif(y=="3"):
         arr_blue[9][1] = "馬"
         arr_blue[9][6] = "馬"
         arr_blue[9][2] = "象"
         arr_blue[9][7] = "象"
 
-    elif(y=="왼"):
+    elif(y=="4"):
         arr_blue[9][2] = "馬"
         arr_blue[9][7] = "馬"
         arr_blue[9][1] = "象"
@@ -99,14 +99,15 @@ def Board():
                     print(C_BLUE+arr_blue[i][j]+C_WHITE)   
                 elif(arr_blue[i][j]=="* "):
                     print(C_RED+arr_red[i][j]+C_WHITE)
-            if(i!=9):
-                print("    |"*9)
+        if(i!=9):
+            print("    |"*9)
 
 def main():
     print("장기하-자.")
-    x = input("Player 1의 상차림을 선택하세요(안/바깥/오른/왼):")
-    y = input("Player 2의 상차림을 선택하세요(안/바깥/오른/왼):")
-    select_Board(x,y)
+    x = input("Player 1의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):")
+    y = input("Player 2의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):")
+    arr_red = Select_red_board(x)
+    arr_blue = Select_blue_board(y)
     Board()
     a1 = input("이동시킬 말의 행과 열을 입력하시오.\n몇 행?: ")
     a2 = input("몇 열?: ")
