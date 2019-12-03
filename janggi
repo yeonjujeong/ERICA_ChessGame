@@ -1,9 +1,8 @@
-
 arr_red =[["* " for i in range(9)] for i in range(10)]
 arr_blue = [["* " for i in range(9)] for i in range(10)]
 
 def Select_red_board(x):
-	#Board_select_fuction
+        #Board_select_fuction
     #basic_red
     arr_red[0][0] = "車"
     arr_red[0][8] = "車"
@@ -21,19 +20,19 @@ def Select_red_board(x):
         arr_red[0][7] = "馬"
         arr_red[0][2] = "象"
         arr_red[0][6] = "象"
- 
+
     elif(x=="2"):
         arr_red[0][2] = "馬"
         arr_red[0][6] = "馬"
         arr_red[0][1] = "象"
         arr_red[0][7] = "象"
-        
+
     elif(x=="3"):
         arr_red[0][2] = "馬"
         arr_red[0][7] = "馬"
         arr_red[0][1] = "象"
         arr_red[0][6] = "象"
-       
+
     elif(x=="4"):
         arr_red[0][1] = "馬"
         arr_red[0][6] = "馬"
@@ -58,7 +57,7 @@ def Select_blue_board(y):
         arr_blue[9][7] = "馬"
         arr_blue[9][2] = "象"
         arr_blue[9][6] = "象"
-        
+
     elif(y=="2"):
         arr_blue[9][2] = "馬"
         arr_blue[9][6] = "馬"
@@ -87,7 +86,7 @@ def Board():
     C_RED    = "\033[31m"
     C_BLUE   = "\033[34m"
     for i in range(0,10):
-        print(chr(i+65)+'행 ',end='') 
+        print(chr(i+65)+'행 ',end='')
         for j in range(0,9):
             if(j!=8):
                 if(arr_red[i][j]=="* " and arr_blue[i][j]=="* "):
@@ -100,91 +99,111 @@ def Board():
                 if(arr_red[i][j]=="* " and  arr_blue[i][j]=="* "):
                     print(C_WHITE+"*   ")
                 elif(arr_red[i][j]=="* "):
-                    print(C_BLUE+arr_blue[i][j]+C_WHITE)   
+                    print(C_BLUE+arr_blue[i][j]+C_WHITE)
                 elif(arr_blue[i][j]=="* "):
                     print(C_RED+arr_red[i][j]+C_WHITE)
         if(i!=9):
             print("    |"*9)
+
     print('\n')
+
+def red_Startpos():
+    try:
+        x = int(input("Player 1의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
+        while not(x==1 or x==2 or x==3 or x==4):
+            print("다시 입력해주세요.")
+            x = int(input("Player 1의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
+        return x
+    except ValueError:
+        print("다시 입력해주세요.")
+        red_Startpos()
+def blue_Startpos():
+    try:
+        y = int(input("Player 2의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
+        while not (y==1 or y==2 or y==3 or y==4):
+            print("다시 입력해주세요.")
+            y = int(input("Player 2의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
+        return y
+    except ValueError:
+        print("다시 입력해주세요.")
+        blue_Startpos()
+
+def Movepos_red1():
+    print("이동시킬 말의 행과 열을 입력하시오.")
+    a1 = input("몇 행?(A~J): ")
+    while (65>int(a1) or int(a1)>=75):
+        print("다시 입력해주세요.")
+        a1 = input("몇 행?(A~J): ")
+    return a1
+
+def Movepos_red2():
+    try:
+        a2 = int(input("몇 열?(1~9): "))
+        while (a2>9 or a2<1):
+            print("다시 입력해주세요.")
+            a2 = int(input("몇 열?(1~9): "))
+        return a2
+    except ValueError:
+        print("다시 입력해 주세요")
+        Movepos_red2()
+
+def Movepos_blue1():
+    print("이동시킬 말의 행과 열을 입력하시오.")
+    b1 = input("몇 행?(A~J): ")
+    while (65>int(b1) or int(b1)>=75):
+        print("다시 입력해주세요.")
+        b1 = input("몇 행?(A~J): ")
+    return b1
+
+def Movepos_blue2():
+    try:
+        b2 = int(input("몇 열?(1~9): "))
+        while (b2>9 or b2<1):
+            print("다시 입력해주세요.")
+            b2 = int(input("몇 열?(1~9): ")
+            return b2
+
+    except ValueError:
+        print("다시 입력해 주세요")
+        Movepos_blue2()
+
+
+        
+        
+
 
 def main():
     print("장기하-자.")
-
-
-	
-    try:
-        x = int(input("Player 1의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
-        if(x>4): raise IndexError
-    except IndexError:
-        print("범위를 벗어났습니다. 다시 입력해주세요.")
-
-    except ValueError as e:
-        print(e, "숫자를 입력해 주세요")
-
-    try:
-        y = int(input("Player 2의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
-        if(y>4): raise IndexError
-    except IndexError:
-        print("범위를 벗어났습니다. 다시 입력해주세요.")
-
-    except ValueError as e:
-        print(e, "숫자를 입력해 주세요")
+    x = red_Startpos()
+    y = blue_Startpos()
     Select_red_board(x)
     Select_blue_board(y)
     Board()
-    try:
-        a1 = input("이동시킬 말의 행과 열을 입력하시오.\n몇 행?: ")
-        if('a1' > chr(75)) : raise IndexError
-    except IndexError:
-        print("범위를 벗어났습니다. 다시 입력해주세요.")	
-    except ValueError as e:
-        print(e, "문자를 입력해 주세요")
-    try:
-        a2 = int(input("몇 열?: "))
-        if(a2 > 9): raise IndexError
-    except IndexError:
-        print("범위를 벗어났습니다. 다시 입력해주세요.")
-    except ValueError as e:
-        print(e, "숫자를 입력해 주세요")
-    
-    try:
-        b1 = input("이동시킬 말의 행과 열을 입력하시오.\n몇 행?: ")
-        if('b1' > chr(75)) : raise IndexError
-    except IndexError:
-        print("범위를 벗어났습니다. 다시 입력해주세요.")	
-    except ValueError as e:
-        print(e, "문자를 입력해 주세요")
-    try:
-        b2 = int(input("몇 열?: "))
-        if(b2 > 9): raise IndexError
-    except IndexError:
-        print("범위를 벗어났습니다. 다시 입력해주세요.")
-    except ValueError as e:
-        print(e, "숫자를 입력해 주세요")
+    Movepos_red1()
+    Movepos_red2()
+    Movepos_blue1()
+    Movepos_blue2()
 
 
 '''
-예외처리
-p1 상차림 숫자 1 2 3 4 아닐경우
-p1 상차림 숫자 입력이 아닌경우(정수로 입력받았을 경우)
-p2 상차림 숫자 1 2 3 4 아닐경우
-p1 상차림 숫자 입력이 아닌경우(정수로 입력받았을 경우)
-말과 행을 입력받을 때
-숫자 입력이 아닌 경우
-행을 벗어난 경우
-열을 벗어난 경우까지 했음
+red_Startpos()
+blue_Startpos()
+Movepos_red1() 행
+Movepos_red2() 열
+Movepos_blue1() 행
+Movepos_blue2() 열 함수들 추가함
+근데 자꾸 blue2에서 오류남 ㅠ
 
-정민 이거 위에 while True:이렇게 해야 틀리면 다시 쓰게 할듯
-그리고 지금 열, 숫자, 문자 이거는 다 작동하는 것 같은디 행이 좀
-이상하거든? 이거 좀 고쳐주센
 '''
 
 
 
 
 
-main()  
+main()
 
 
-	
+
+
+
 
