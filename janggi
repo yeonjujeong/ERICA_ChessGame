@@ -356,6 +356,16 @@ Movepos_bf1() before move_행지정
 Movepos_bf2() before move_열지정
 Movepos_af1() after move_행지정
 Movepos_af2() after move_열지정 함수들 추가함
+
+차 움직이는 거 했는데
+그 이동할 말 선택하고 그 다음에 말의 이동시킬 행과 열을 입력하시오가 두번씩 나오거든?
+그니까 이동할 위치를 두번 써줘야 이동하는데 대체 왜 그런지 모르겠음 ..
+아는사람..?   알려주면 바로 고칠께
+
+
+
+
+
 '''
 
 
