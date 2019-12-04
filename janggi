@@ -192,8 +192,6 @@ Movepos_red1() 행지정
 Movepos_red2() 열지정
 Movepos_blue1() 행지정
 Movepos_blue2() 열지정 함수들 추가함
-근데 자꾸 blue2에서 오류남 ㅠ
-
 '''
 
 
