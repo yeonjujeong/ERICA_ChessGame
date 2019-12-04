@@ -173,14 +173,15 @@ def Movepos_af2():
         Movepos_af2()
 
 def red_run():
+    global turn
     x1 = ord(Movepos_bf1())-65
     x2 = Movepos_bf2()-1
-    y1 = ord(Movepos_af1())-65
-    y2 = Movepos_af2()-1
     while(arr_red[x1][x2]=="* "):
-        print("insert again")
+        print("wrong position")
         x1 = ord(Movepos_bf1())-65
         x2 = Movepos_bf2()-1
+    y1 = ord(Movepos_af1())-65
+    y2 = Movepos_af2()-1
     while(arr_red[y1][y2]!="* "):
         print("already red exists")
         y1 = ord(Movepos_af1())-65
@@ -201,14 +202,15 @@ def red_run():
             turn = True
 
 def blue_run():
+    global turn
     x1 = ord(Movepos_bf1())-65
     x2 = Movepos_bf2()-1
-    y1 = ord(Movepos_af1())-65
-    y2 = Movepos_af2()-1
     while(arr_blue[x1][x2]=="* "):
-        print("insert again")
+        print("wrong position")
         x1 = ord(Movepos_bf1())-65
         x2 = Movepos_bf2()-1
+    y1 = ord(Movepos_af1())-65
+    y2 = Movepos_af2()-1
     while(arr_blue[y1][y2]!="* "):
         print("already red exists")
         y1 = ord(Movepos_af1())-65
@@ -237,8 +239,10 @@ def main():
     Board()
     while(end):
         if(turn):
+            Board()
             red_run()
         else:
+            Board()
             blue_run()
 
 
