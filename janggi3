@@ -181,6 +181,7 @@ def red_byeong(x1,x2,y1,y2):
     if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
         arr_red[y1][y2] = "兵"
         arr_red[x1][x2] = "* "
+        print("blue_turn")
         turn = False
     elif(arr_blue[y1][y2]!="* "):
         arr_red[y1][y2] = "兵"
@@ -197,6 +198,7 @@ def blue_jjol(x1,x2,y1,y2):
     if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
         arr_blue[y1][y2] = "卒"
         arr_blue[x1][x2] = "* "
+        print("red turn")
         turn = True
     elif(arr_blue[y1][y2]!="* "):
         arr_blue[y1][y2] = "卒"
@@ -248,6 +250,7 @@ def red_cha(x1,x2,y1,y2):
     if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
         arr_red[y1][y2] = "車"
         arr_red[x1][x2] = "* "
+        print("blue_turn")
         turn = False
     elif(arr_blue[y1][y2]!="* "):
         arr_red[y1][y2] = "車"
@@ -300,6 +303,7 @@ def blue_cha(x1,x2,y1,y2):
     if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
         arr_blue[y1][y2] = "車"
         arr_blue[x1][x2] = "* "
+        print("red turn")
         turn = True
     elif(arr_red[y1][y2]!="* "):         #이거 왜 arr_blue???? arr_red 아닌가.. 일단 수정함 //kimjeongmin
         arr_blue[y1][y2] = "車"
@@ -317,6 +321,7 @@ def red_sa(x1,x2,y1,y2):
         if(arr_blue[y1][y2]=="* "):
             arr_red[y1][y2]="士"
             arr_red[x1][x2]="* "
+            print("blue_turn")
             trun = False
         elif(arr_blue[y1][y2]!="* "):
             arr_blue[y1][y2]="* "
@@ -334,7 +339,8 @@ def blue_sa(x1,x2,y1,y2):
     while(0<=y1<=2 and 7<=y2<=9):
         if(arr_red[y1][y2]=="* "):
             arr_blue[y1][y2]="士"
-            arr_blue[x1][x2]="* "
+            arr_blue[x1][x2]="*"
+            print("red_turn")
             turn = True
         elif(arr_red[y1][y2]!="* "):
             arr_red[y1][y2]="* "
@@ -343,10 +349,64 @@ def blue_sa(x1,x2,y1,y2):
             print("again blue_turn")
             turn = False
 
-        
-    
-                 
-                 
+def red_po(x1,x2,y1,y2):
+    global turn
+    while(x1!=y1 and x2!= y2 or arr_red[y1][y2]!="* "):
+        print("기물을 움직일 수 없습니다.")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
+    for i in range(0,9):
+        if(arr_red[x1][i]!="* " and x1 == y1 and x2<i):
+            for j in range(i+1,9):
+                if(arr_red[x1][j]!="* "):
+                    for k in range(i+1,j):
+                        if(k==y2):
+                            if(arr_blue[x1][k]=="* "):
+                                arr_red[y1][k]="包"
+                                arr_red[x1][x2]="* "
+                                print("blue turn")
+                                turn = False
+                                break
+                            elif(arr_blue[x1][k]!="* "):
+                                arr_blue[x2][k]="* "
+                                arr_red[x2][k]="包 "
+                                arr_red[x1][x2]="* "
+                                turn = True
+                                print("again red_turn")
+                                break
+
+        if(arr_red[x1][i]!="* " and x1 == y1 and x2>i):
+            for j in range(i-1,-1,-1):
+                 if(arr_red[x1][j]!="* "):
+                     for k in range(i-1,j,-1):
+                         if(k==y2):
+                             if(arr_blue[x1][k]=="* "): 
+                                 arr_red[y1][k]="包"
+                                 arr_red[x1][x2]="* "
+                                 print("blue_turn")
+                                 turn =False
+                                 break
+                             elif(arr_blue[x1][k]!="* "):
+                                 arr_red[y1][k]="包 "
+                                 arr_red[x1][x2]="* "
+                                 arr_blue[x1][k]="*"
+                                 turn = True
+                                 print("again red_turn")
+                                 break
+    for i in range(0,10):
+        if(arr_red[i][x2]!="* " and x2 == y2 and x2<i):
+            for j in range(i+1,10):
+                if(arr_red[j][x2]!="* "):
+                    for k in range(i+1,j):
+                        if(k==y1):
+                            if(arr_blue[k][y2]=="* "):
+                                arr_red[k][y2]="包"
+                                arr_red[x1][x2]="* "
+                            elif(arr_blue[k][y2]!="* "):
+                                arr_blue[k][y2]="* "
+                                arr_red[k][y2]="包"
+                                arr_red[x1][x2]="* "
+                    
 
 def red_run():
     global turn
@@ -371,6 +431,9 @@ def red_run():
     if(arr_red[x1][x2] == "士"):
         red_sa(x1,x2,y1,y2)
 
+    if(arr_red[x1][x2] == "包"):
+        red_po(x1,x2,y1,y2)
+
 def blue_run():
     global turn
     x1 = ord(Movepos_bf1())-65
@@ -393,6 +456,9 @@ def blue_run():
 
     if(arr_blue[x1][x2] == "士"):
         blue_sa(x1,x2,y1,y2)
+
+    if(arr_blue[x1][x2] == "包"):
+        blue_po(x1,x2,y1,y2)
         
 def main():
     print("장기하-자.")
@@ -412,7 +478,11 @@ def main():
 
 
 '''
-약간 수정하고 red_sa() 함수 blue_sa()함수 추가함
+약간 수정하고
+
+일단 red_po()함수 만들었는데 아직 완성본 아님
+
+blue_po()함수는 만들 예정
 
 '''
 
