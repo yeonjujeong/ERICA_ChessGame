@@ -202,39 +202,39 @@ def red_run():
             turn = True
 
     if(arr_red[x1][x2] == "車"):
-    	while(x1!=y1 and x2!= y2):
+        while(x1!=y1 and x2!= y2):
             print("cha can't move that position")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
         if(x2 < y2 and x1 == y1):
-            int sum = 0
+            sum = 0
             for i in range(x2, y2):
                 if(arr_red[x1][i] != "* " and arr_blue[x1][i] != "* "):
-                    sum++
+                    sum = sum + 1
             if(sum!=x2-y2):
                 y1 = ord(Movepos_af1())-65
                 y2 = Movepos_af2()-1
         elif(x2 > y2 and x1 == y1):
-            int sum = 0
+            sum = 0
             for i in range(x2, y2, -1):
                 if(arr_red[x1][i] != "* " and arr_blue[x1][i] != "* "):
-                    sum++
+                    sum = sum + 1
             if(sum != y2-x2):
                 y1 = ord(Movepos_af1())-65
                 y2 = Movepos_af2()-1
-         if(x1 < y1 and x2==y2):
-            int sum = 0
+        if(x1 < y1 and x2==y2):
+            sum = 0
             for i in range(x1, y1):
                 if(arr_red[i][x2] != "* " and arr_blue[i][x2] != "* "):
-                    sum++
+                    sum = sum + 1
             if(sum!=x1-y1):
                 y1 = ord(Movepos_af1())-65
                 y2 = Movepos_af2()-1
-        else if(x1 > y1 and x2 == y2):
-            int sum = 0
+        elif(x1 > y1 and x2 == y2):
+            sum = 0
             for i in range(x1, y1, -1):
                 if(arr_red[i][x2] != "* " and arr_blue[i][x2] != "* "):
-                    sum++
+                    sum = sum + 1
             if(sum != y1-x1):
                 y1 = ord(Movepos_af1())-65
                 y2 = Movepos_af2()-1
@@ -280,7 +280,54 @@ def blue_run():
             arr_blue[y1][y2] = "卒"
             arr_red[x1][x2] = "* "
             print("again blue_turn")
+            
+    if(arr_blue[x1][x2] == "車"):
+        while(x1!=y1 and x2!= y2):
+            print("cha can't move that position")
+            y1 = ord(Movepos_af1())-65
+            y2 = Movepos_af2()-1
+        if(x2 < y2 and x1 == y1):
+            sum = 0
+            for i in range(x2, y2):
+                if(arr_red[x1][i] != "* " and arr_blue[x1][i] != "* "):
+                    sum = sum + 1
+            if(sum!=x2-y2):
+                y1 = ord(Movepos_af1())-65
+                y2 = Movepos_af2()-1
+        elif(x2 > y2 and x1 == y1):
+            sum = 0
+            for i in range(x2, y2, -1):
+                if(arr_red[x1][i] != "* " and arr_blue[x1][i] != "* "):
+                    sum = sum + 1
+            if(sum != y2-x2):
+                y1 = ord(Movepos_af1())-65
+                y2 = Movepos_af2()-1
+        if(x1 < y1 and x2==y2):
+            sum = 0
+            for i in range(x1, y1):
+                if(arr_red[i][x2] != "* " and arr_blue[i][x2] != "* "):
+                    sum = sum + 1
+            if(sum!=x1-y1):
+                y1 = ord(Movepos_af1())-65
+                y2 = Movepos_af2()-1
+        elif(x1 > y1 and x2 == y2):
+            sum = 0
+            for i in range(x1, y1, -1):
+                if(arr_red[i][x2] != "* " and arr_blue[i][x2] != "* "):
+                    sum = sum + 1
+            if(sum != y1-x1):
+                y1 = ord(Movepos_af1())-65
+                y2 = Movepos_af2()-1
+        if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
+            arr_blue[y1][y2] = "車"
+            arr_blue[x1][x2] = "* "
+            turn = True
+        elif(arr_blue[y1][y2]!="* "):
+            arr_blue[y1][y2] = "車"
+            arr_red[x1][x2] = "* "
+            print("again blue_turn")
             turn = False
+                                                                                
     
         
 def main():
