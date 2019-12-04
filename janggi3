@@ -174,7 +174,7 @@ def Movepos_af2():
 
 def red_byeong(x1,x2,y1,y2):
     global turn
-    while(x1-y1!=1 or x1-y1!=-1 or x2-y2!=1):   #병은 뒤로 못가는 기물임 , 이건 or로 하는 게 맞을듯..? //kimmessi
+    while(x1-y1!=1 or x1-y1!=-1 or x2-y2!=1):   #병은 뒤로 못가는 기물임 , 이건 or로 하는 게 맞을듯..? //kimjeongmin
         print("jjol can't move that position")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
@@ -185,12 +185,12 @@ def red_byeong(x1,x2,y1,y2):
     elif(arr_blue[y1][y2]!="* "):
         arr_red[y1][y2] = "兵"
         arr_blue[x1][x2] = "* "
-        print("again red_turn")                 #이건 왜 장기 알 따면 왜 한 번 더하는 거...? 원래 안 그러는데 이거 그대로 가는 거야? //kimmessi
+        print("again red_turn")                 #이건 왜 장기 알 따면 왜 한 번 더하는 거...? 원래 안 그러는데..  //kimjeongmin
         turn = True
 
 def blue_jjol(x1,x2,y1,y2):
     global turn
-    while(x1-y1!=1 and x1-y1!=-1 and x2-y2!=-1): #졸도 뒤로 못가는 기물임 , 이것도 //kimmessi
+    while(x1-y1!=1 and x1-y1!=-1 and x2-y2!=-1): #졸도 뒤로 못가는 기물임 , or로 수정함 //kimjeongmin
         print("jjol can't move that position")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
@@ -214,7 +214,7 @@ def red_cha(x1,x2,y1,y2):
         for i in range(x2, y2):
             if(arr_red[x1][i] == "* " and arr_blue[x1][i] == "* "):
                 sum+=1
-        if(sum!=y2-x2):             #y2가 x2보다 크다고 설정 했는데 그러면 sum이랑 같을 수가 없어서 수정함.//kimmessi
+        if(sum!=y2-x2):             #y2가 x2보다 크다고 설정 했는데 그러면 sum이랑 같을 수가 없어서 수정함.//kimjeongmin
             print("wrong position")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
@@ -301,11 +301,52 @@ def blue_cha(x1,x2,y1,y2):
         arr_blue[y1][y2] = "車"
         arr_blue[x1][x2] = "* "
         turn = True
-    elif(arr_blue[y1][y2]!="* "):
+    elif(arr_red[y1][y2]!="* "):         #이거 왜 arr_blue???? arr_red 아닌가.. 일단 수정함 //kimjeongmin
         arr_blue[y1][y2] = "車"
         arr_red[x1][x2] = "* "
         print("again blue_turn")
         turn = False
+
+def red_sa(x1,x2,y1,y2):
+    global turn
+    while(x1!=y1 and x2!= y2 or arr_red[y1][y2]!="* "):
+        print("기물을 움직일 수 없습니다.")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
+    while(0<=y1<=2 and 3<=y2<=5):
+        if(arr_blue[y1][y2]=="* "):
+            arr_red[y1][y2]="士"
+            arr_red[x1][x2]="* "
+            trun = False
+        elif(arr_blue[y1][y2]!="* "):
+            arr_blue[y1][y2]="* "
+            arr_red[x1][x2]="* "
+            arr_red[y1][y2]="士"
+            print("again red_turn")
+            turn = True
+
+def blue_sa(x1,x2,y1,y2):
+    global turn
+    while(x1!=y1 and x2!= y2 or arr_blue[y1][y2]!="* "):
+        print("기물을 움직일 수 없습니다.")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
+    while(0<=y1<=2 and 7<=y2<=9):
+        if(arr_red[y1][y2]=="* "):
+            arr_blue[y1][y2]="士"
+            arr_blue[x1][x2]="* "
+            turn = True
+        elif(arr_red[y1][y2]!="* "):
+            arr_red[y1][y2]="* "
+            arr_blue[x1][x2]="* "
+            arr_blue[y1][y2]="士"
+            print("again blue_turn")
+            turn = False
+
+        
+    
+                 
+                 
 
 def red_run():
     global turn
@@ -326,6 +367,9 @@ def red_run():
 
     if(arr_red[x1][x2] == "車"):
         red_cha(x1,x2,y1,y2)
+       
+    if(arr_red[x1][x2] == "士"):
+        red_sa(x1,x2,y1,y2)
 
 def blue_run():
     global turn
@@ -345,7 +389,10 @@ def blue_run():
         blue_jjol(x1,x2,y1,y2)
                    
     if(arr_blue[x1][x2] == "車"):
-        blue_cha(x1,x2,y1,y2)                                                  
+        blue_cha(x1,x2,y1,y2)
+
+    if(arr_blue[x1][x2] == "士"):
+        blue_sa(x1,x2,y1,y2)
         
 def main():
     print("장기하-자.")
@@ -365,7 +412,7 @@ def main():
 
 
 '''
-약간 모자란 부분들 수정함
+약간 수정하고 red_sa() 함수 blue_sa()함수 추가함
 
 '''
 
