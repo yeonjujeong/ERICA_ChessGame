@@ -1,5 +1,7 @@
 arr_red =[["* " for i in range(9)] for i in range(10)]
 arr_blue = [["* " for i in range(9)] for i in range(10)]
+turn = True #red=true,blue=false
+end = True 
 
 def Select_red_board(x):
         #Board_select_fuction
@@ -15,25 +17,25 @@ def Select_red_board(x):
     for i in range(5):
         arr_red[3][i*2] = "兵"
 
-    if(x=="1"):
+    if(x==1):
         arr_red[0][1] = "馬"
         arr_red[0][7] = "馬"
         arr_red[0][2] = "象"
         arr_red[0][6] = "象"
 
-    elif(x=="2"):
+    elif(x==2):
         arr_red[0][2] = "馬"
         arr_red[0][6] = "馬"
         arr_red[0][1] = "象"
         arr_red[0][7] = "象"
 
-    elif(x=="3"):
+    elif(x==3):
         arr_red[0][2] = "馬"
         arr_red[0][7] = "馬"
         arr_red[0][1] = "象"
         arr_red[0][6] = "象"
 
-    elif(x=="4"):
+    elif(x==4):
         arr_red[0][1] = "馬"
         arr_red[0][6] = "馬"
         arr_red[0][2] = "象"
@@ -52,25 +54,25 @@ def Select_blue_board(y):
     for i in range(5):
         arr_blue[6][i*2] = "卒"
 
-    if(y=="1"):
+    if(y==1):
         arr_blue[9][1] = "馬"
         arr_blue[9][7] = "馬"
         arr_blue[9][2] = "象"
         arr_blue[9][6] = "象"
 
-    elif(y=="2"):
+    elif(y==2):
         arr_blue[9][2] = "馬"
         arr_blue[9][6] = "馬"
         arr_blue[9][1] = "象"
         arr_blue[9][7] = "象"
 
-    elif(y=="3"):
+    elif(y==3):
         arr_blue[9][1] = "馬"
         arr_blue[9][6] = "馬"
         arr_blue[9][2] = "象"
         arr_blue[9][7] = "象"
 
-    elif(y=="4"):
+    elif(y==4):
         arr_blue[9][2] = "馬"
         arr_blue[9][7] = "馬"
         arr_blue[9][1] = "象"
@@ -104,7 +106,10 @@ def Board():
                     print(C_RED+arr_red[i][j]+C_WHITE)
         if(i!=9):
             print("    |"*9)
-
+    if(turn):
+        print("this turn is red")
+    else:
+        print("this turn is blue")
     print('\n')
 
 def red_Startpos():
@@ -117,6 +122,7 @@ def red_Startpos():
     except ValueError:
         print("다시 입력해주세요.")
         red_Startpos()
+
 def blue_Startpos():
     try:
         y = int(input("Player 2의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
@@ -128,7 +134,7 @@ def blue_Startpos():
         print("다시 입력해주세요.")
         blue_Startpos()
 
-def Movepos_red1():
+def Movepos_bf1():
     print("이동시킬 말의 행과 열을 입력하시오.")
     a1 = input("몇 행?(A~J): ")
     while (chr(65)>a1 or a1>=chr(75)):
@@ -136,7 +142,7 @@ def Movepos_red1():
         a1 = input("몇 행?(A~J): ")
     return a1
 
-def Movepos_red2():
+def Movepos_bf2():
     try:
         a2 = int(input("몇 열?(1~9): "))
         while (a2>9 or a2<1):
@@ -145,17 +151,17 @@ def Movepos_red2():
         return a2
     except ValueError:
         print("다시 입력해 주세요")
-        Movepos_red2()
+        Movepos_bf2()
 
-def Movepos_blue1():
-    print("이동시킬 말의 행과 열을 입력하시오.")
+def Movepos_af1():
+    print("말의 이동시킬 행과 열을 입력하시오.")
     b1 = input("몇 행?(A~J): ")
     while (chr(65)>b1 or b1>=chr(75)):
         print("다시 입력해주세요.")
         b1 = input("몇 행?(A~J): ")
     return b1
 
-def Movepos_blue2():
+def Movepos_af2():
     try:
         b2 = int(input("몇 열?(1~9): "))
         while (b2>9 or b2<1):
@@ -164,12 +170,64 @@ def Movepos_blue2():
         return b2
     except ValueError:
         print("다시 입력해주세요.")
-        Movepos_blue2()
+        Movepos_af2()
 
+def red_run():
+    x1 = ord(Movepos_bf1())-65
+    x2 = Movepos_bf2()-1
+    y1 = ord(Movepos_af1())-65
+    y2 = Movepos_af2()-1
+    while(arr_red[x1][x2]=="* "):
+        print("insert again")
+        x1 = ord(Movepos_bf1())-65
+        x2 = Movepos_bf2()-1
+    while(arr_red[y1][y2]!="* "):
+        print("already red exists")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
+    if(arr_red[x1][x2]=="兵"):
+        while(x1-y1!=1 and x1-y1!=-1 and x2-y2!=1 and x2-y2!=-1):
+            print("jjol can't move that position")
+            y1 = ord(Movepos_af1())-65
+            y2 = Movepos_af2()-1
+        if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
+            arr_red[y1][y2] = "兵"
+            arr_red[x1][x2] = "* "
+            turn = False
+        elif(arr_blue[y1][y2]!="* "):
+            arr_red[y1][y2] = "兵"
+            arr_blue[x1][x2] = "* "
+            print("again red_turn")
+            turn = True
+
+def blue_run():
+    x1 = ord(Movepos_bf1())-65
+    x2 = Movepos_bf2()-1
+    y1 = ord(Movepos_af1())-65
+    y2 = Movepos_af2()-1
+    while(arr_blue[x1][x2]=="* "):
+        print("insert again")
+        x1 = ord(Movepos_bf1())-65
+        x2 = Movepos_bf2()-1
+    while(arr_blue[y1][y2]!="* "):
+        print("already red exists")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
+    if(arr_blue[x1][x2]=="卒"):
+        while(x1-y1!=1 and x1-y1!=-1 and x2-y2!=1 and x2-y2!=-1):
+            print("jjol can't move that position")
+            y1 = ord(Movepos_af1())-65
+            y2 = Movepos_af2()-1
+        if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
+            arr_blue[y1][y2] = "卒"
+            arr_blue[x1][x2] = "* "
+            turn = True
+        elif(arr_blue[y1][y2]!="* "):
+            arr_blue[y1][y2] = "卒"
+            arr_red[x1][x2] = "* "
+            print("again blue_turn")
+            turn = False
         
-        
-
-
 def main():
     print("장기하-자.")
     x = red_Startpos()
@@ -177,21 +235,23 @@ def main():
     Select_red_board(x)
     Select_blue_board(y)
     Board()
-    Movepos_red1()
-    Movepos_red2()
-    Movepos_blue1()
-    ''' 여기에 말이동 함수 만들어서 넣어줭'''
-    Movepos_blue2()
-    ''' 여기도 '''
+    while(end):
+        if(turn):
+            red_run()
+        else:
+            blue_run()
+
 
 
 '''
+turn #red_turn or blue_turn
+     #red is true, blue is false
 red_Startpos()
 blue_Startpos()
-Movepos_red1() 행지정
-Movepos_red2() 열지정
-Movepos_blue1() 행지정
-Movepos_blue2() 열지정 함수들 추가함
+Movepos_bf1() before move_행지정
+Movepos_bf2() before move_열지정
+Movepos_af1() after move_행지정
+Movepos_af2() after move_열지정 함수들 추가함
 '''
 
 
