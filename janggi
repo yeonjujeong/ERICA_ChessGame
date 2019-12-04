@@ -131,7 +131,7 @@ def blue_Startpos():
 def Movepos_red1():
     print("이동시킬 말의 행과 열을 입력하시오.")
     a1 = input("몇 행?(A~J): ")
-    while (65>int(a1) or int(a1)>=75):
+    while (chr(65)>a1 or a1>=chr(75)):
         print("다시 입력해주세요.")
         a1 = input("몇 행?(A~J): ")
     return a1
@@ -150,7 +150,7 @@ def Movepos_red2():
 def Movepos_blue1():
     print("이동시킬 말의 행과 열을 입력하시오.")
     b1 = input("몇 행?(A~J): ")
-    while (65>int(b1) or int(b1)>=75):
+    while (chr(65)>b1 or b1>=chr(75)):
         print("다시 입력해주세요.")
         b1 = input("몇 행?(A~J): ")
     return b1
@@ -160,13 +160,11 @@ def Movepos_blue2():
         b2 = int(input("몇 열?(1~9): "))
         while (b2>9 or b2<1):
             print("다시 입력해주세요.")
-            b2 = int(input("몇 열?(1~9): ")
-            return b2
-
+            b2 = int(input("몇 열?(1~9): "))
+        return b2
     except ValueError:
-        print("다시 입력해 주세요")
+        print("다시 입력해주세요.")
         Movepos_blue2()
-
 
         
         
@@ -182,16 +180,18 @@ def main():
     Movepos_red1()
     Movepos_red2()
     Movepos_blue1()
+    ''' 여기에 말이동 함수 만들어서 넣어줭'''
     Movepos_blue2()
+    ''' 여기도 '''
 
 
 '''
 red_Startpos()
 blue_Startpos()
-Movepos_red1() 행
-Movepos_red2() 열
-Movepos_blue1() 행
-Movepos_blue2() 열 함수들 추가함
+Movepos_red1() 행지정
+Movepos_red2() 열지정
+Movepos_blue1() 행지정
+Movepos_blue2() 열지정 함수들 추가함
 근데 자꾸 blue2에서 오류남 ㅠ
 
 '''
