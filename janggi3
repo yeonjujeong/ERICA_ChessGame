@@ -2,7 +2,6 @@ arr_red =[["* " for i in range(9)] for i in range(10)]
 arr_blue = [["* " for i in range(9)] for i in range(10)]
 turn = True #red=true,blue=false
 end = True 
-
 def Select_red_board(x):
         #Board_select_fuction
     #basic_red
@@ -13,34 +12,28 @@ def Select_red_board(x):
     arr_red[1][4] = "漢"
     arr_red[2][1] = "包"
     arr_red[2][7] = "包"
-
     for i in range(5):
         arr_red[3][i*2] = "兵"
-
     if(x==1):
         arr_red[0][1] = "馬"
         arr_red[0][7] = "馬"
         arr_red[0][2] = "象"
         arr_red[0][6] = "象"
-
     elif(x==2):
         arr_red[0][2] = "馬"
         arr_red[0][6] = "馬"
         arr_red[0][1] = "象"
         arr_red[0][7] = "象"
-
     elif(x==3):
         arr_red[0][2] = "馬"
         arr_red[0][7] = "馬"
         arr_red[0][1] = "象"
         arr_red[0][6] = "象"
-
     elif(x==4):
         arr_red[0][1] = "馬"
         arr_red[0][6] = "馬"
         arr_red[0][2] = "象"
         arr_red[0][7] = "象"
-
 def Select_blue_board(y):
     #basic_blue
     arr_blue[9][0] = "車"
@@ -50,34 +43,28 @@ def Select_blue_board(y):
     arr_blue[8][4] = "楚"
     arr_blue[7][1] = "包"
     arr_blue[7][7] = "包"
-
     for i in range(5):
         arr_blue[6][i*2] = "卒"
-
     if(y==1):
         arr_blue[9][1] = "馬"
         arr_blue[9][7] = "馬"
         arr_blue[9][2] = "象"
         arr_blue[9][6] = "象"
-
     elif(y==2):
         arr_blue[9][2] = "馬"
         arr_blue[9][6] = "馬"
         arr_blue[9][1] = "象"
         arr_blue[9][7] = "象"
-
     elif(y==3):
         arr_blue[9][1] = "馬"
         arr_blue[9][6] = "馬"
         arr_blue[9][2] = "象"
         arr_blue[9][7] = "象"
-
     elif(y==4):
         arr_blue[9][2] = "馬"
         arr_blue[9][7] = "馬"
         arr_blue[9][1] = "象"
         arr_blue[9][6] = "象"
-
 def Board():
         #Board_print_fuction
     print("   ",end='')
@@ -111,7 +98,6 @@ def Board():
     else:
         print("this turn is blue")
     print('\n')
-
 def red_Startpos():
     try:
         x = int(input("Player 1의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
@@ -122,7 +108,6 @@ def red_Startpos():
     except ValueError:
         print("다시 입력해주세요.")
         red_Startpos()
-
 def blue_Startpos():
     try:
         y = int(input("Player 2의 상차림을 선택하세요(안=1/바깥=2/오른=3/왼=4):"))
@@ -133,7 +118,6 @@ def blue_Startpos():
     except ValueError:
         print("다시 입력해주세요.")
         blue_Startpos()
-
 def Movepos_bf1():
     print("이동시킬 말의 행과 열을 입력하시오.")
     a1 = input("몇 행?(A~J): ")
@@ -141,7 +125,6 @@ def Movepos_bf1():
         print("다시 입력해주세요.")
         a1 = input("몇 행?(A~J): ")
     return a1
-
 def Movepos_bf2():
     try:
         a2 = int(input("몇 열?(1~9): "))
@@ -152,7 +135,6 @@ def Movepos_bf2():
     except ValueError:
         print("다시 입력해 주세요")
         Movepos_bf2()
-
 def Movepos_af1():
     print("말의 이동시킬 행과 열을 입력하시오.")
     b1 = input("몇 행?(A~J): ")
@@ -160,7 +142,6 @@ def Movepos_af1():
         print("다시 입력해주세요.")
         b1 = input("몇 행?(A~J): ")
     return b1
-
 def Movepos_af2():
     try:
         b2 = int(input("몇 열?(1~9): "))
@@ -171,11 +152,10 @@ def Movepos_af2():
     except ValueError:
         print("다시 입력해주세요.")
         Movepos_af2()
-
 def red_byeong(x1,x2,y1,y2):
     global turn
     while(x1-y1!=1 or x1-y1!=-1 or x2-y2!=1):   #병은 뒤로 못가는 기물임 , 이건 or로 하는 게 맞을듯..? //kimjeongmin
-        print("jjol can't move that position")
+        print("兵이 이동할 수 없는 곳입니다.")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
     if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
@@ -188,11 +168,10 @@ def red_byeong(x1,x2,y1,y2):
         arr_blue[x1][x2] = "* "
         print("again red_turn")                 #이건 왜 장기 알 따면 왜 한 번 더하는 거...? 원래 안 그러는데..  //kimjeongmin
         turn = True
-
 def blue_jjol(x1,x2,y1,y2):
     global turn
-    while(x1-y1!=1 and x1-y1!=-1 and x2-y2!=-1): #졸도 뒤로 못가는 기물임 , or로 수정함 //kimjeongmin
-        print("jjol can't move that position")
+    while(x1-y1!=1 or x1-y1!=-1 or x2-y2!=-1): #졸도 뒤로 못가는 기물임 , or로 수정함 //kimjeongmin
+        print("卒이 이동할 수 없는 곳입니다.")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
     if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
@@ -204,7 +183,6 @@ def blue_jjol(x1,x2,y1,y2):
         arr_blue[y1][y2] = "卒"
         arr_red[x1][x2] = "* "
         print("again blue_turn")
-
 def red_cha(x1,x2,y1,y2):
     global turn
     while(x1!=y1 and x2!= y2):
@@ -225,7 +203,7 @@ def red_cha(x1,x2,y1,y2):
         for i in range(x2, y2, -1):
             if(arr_red[x1][i] == "* " and arr_blue[x1][i] == "* "):
                 sum+=1
-        if(sum != x2-y2):        #이것도. //kimmessi
+        if(sum != x2-y2):        #이것도. //kimjeongmin
             print("wrong position")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
@@ -257,7 +235,6 @@ def red_cha(x1,x2,y1,y2):
         arr_blue[x1][x2] = "* "
         print("again red_turn")
         turn = True
-
 def blue_cha(x1,x2,y1,y2):
     global turn
     while(x1!=y1 and x2!= y2):
@@ -310,7 +287,6 @@ def blue_cha(x1,x2,y1,y2):
         arr_red[x1][x2] = "* "
         print("again blue_turn")
         turn = False
-
 def red_sa(x1,x2,y1,y2):
     global turn
     while(x1!=y1 and x2!= y2 or arr_red[y1][y2]!="* "):
@@ -329,7 +305,6 @@ def red_sa(x1,x2,y1,y2):
             arr_red[y1][y2]="士"
             print("again red_turn")
             turn = True
-
 def blue_sa(x1,x2,y1,y2):
     global turn
     while(x1!=y1 and x2!= y2 or arr_blue[y1][y2]!="* "):
@@ -339,6 +314,7 @@ def blue_sa(x1,x2,y1,y2):
     while(0<=y1<=2 and 7<=y2<=9):
         if(arr_red[y1][y2]=="* "):
             arr_blue[y1][y2]="士"
+            arr_blue[x1][x2]="* "
             arr_blue[x1][x2]="*"
             print("red_turn")
             turn = True
@@ -348,6 +324,10 @@ def blue_sa(x1,x2,y1,y2):
             arr_blue[y1][y2]="士"
             print("again blue_turn")
             turn = False
+
+
+
+
 
 def red_po(x1,x2,y1,y2):
     global turn
@@ -406,7 +386,7 @@ def red_po(x1,x2,y1,y2):
                                 arr_blue[k][y2]="* "
                                 arr_red[k][y2]="包"
                                 arr_red[x1][x2]="* "
-                    
+
 
 def red_run():
     global turn
@@ -424,7 +404,6 @@ def red_run():
         y2 = Movepos_af2()-1
     if(arr_red[x1][x2]=="兵"):
         red_byeong(x1,x2,y1,y2)
-
     if(arr_red[x1][x2] == "車"):
         red_cha(x1,x2,y1,y2)
        
@@ -459,7 +438,7 @@ def blue_run():
 
     if(arr_blue[x1][x2] == "包"):
         blue_po(x1,x2,y1,y2)
-        
+
 def main():
     print("장기하-자.")
     x = red_Startpos()
@@ -476,14 +455,10 @@ def main():
             blue_run()
 
 
-
 '''
-약간 수정하고
-
-일단 red_po()함수 만들었는데 아직 완성본 아님
-
-blue_po()함수는 만들 예정
+병함수랑 졸함수 약간 수정함.
 
 '''
 
 main()
+
