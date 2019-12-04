@@ -155,15 +155,19 @@ def Movepos_af2():
 def red_byeong(x1,x2,y1,y2):
     global turn
     if(x2==y2):
-        while not (abs(x1-y1)==1):
+        while(abs(x1-y1)!=1):
             print("兵이 이동할 수 없는 곳입니다.")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
     if(x1==y1):
-        while not (y2-y1==1):
+        while(y2-y1!=1):
             print("兵이 이동할 수 없는 곳입니다.")
             y1 = ord(Movepos_af1())-65
-            y2 = Movepos_af2()-1                    #병은 뒤로 못가는 기물임 //kimjeongmin     
+            y2 = Movepos_af2()-1           #병은 뒤로 못가는 기물임 //kimjeongmin
+    if(x1!=y1 and x2!=y2):
+        print("兵이 이동할 수 없는 곳입니다.")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1 
     if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
         arr_red[y1][y2] = "兵"
         arr_red[x1][x2] = "* "
@@ -177,15 +181,19 @@ def red_byeong(x1,x2,y1,y2):
 def blue_jjol(x1,x2,y1,y2):
     global turn
     if(x2==y2):
-        while not(abs(x1-y1)):
+        while(abs(x1-y1)!=1):
             print("卒이 이동할 수 없는 곳입니다.")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
     if(x1==y1):
-        while not(y1-y2==-1):
+        while(y1-y2!=-1):
             print("卒이 이동할 수 없는 곳입니다.")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
+    if(x1!=y1 and x2!=y2):
+        print("兵이 이동할 수 없는 곳입니다.")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1 
     if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
         arr_blue[y1][y2] = "卒"
         arr_blue[x1][x2] = "* "
