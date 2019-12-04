@@ -155,7 +155,7 @@ def Movepos_af2():
 def red_byeong(x1,x2,y1,y2):
     global turn
     if(x2==y2):
-        while not (abs(x1-y1==1):
+        while not (abs(x1-y1)==1):
             print("兵이 이동할 수 없는 곳입니다.")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
