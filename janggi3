@@ -174,7 +174,7 @@ def Movepos_af2():
 
 def red_byeong(x1,x2,y1,y2):
     global turn
-    while(x1-y1!=1 and x1-y1!=-1 and x2-y2!=1 and x2-y2!=-1):
+    while(x1-y1!=1 or x1-y1!=-1 or x2-y2!=1):   #병은 뒤로 못가는 기물임 , 이건 or로 하는 게 맞을듯..? //kimmessi
         print("jjol can't move that position")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
@@ -185,12 +185,12 @@ def red_byeong(x1,x2,y1,y2):
     elif(arr_blue[y1][y2]!="* "):
         arr_red[y1][y2] = "兵"
         arr_blue[x1][x2] = "* "
-        print("again red_turn")
+        print("again red_turn")                 #이건 왜 장기 알 따면 왜 한 번 더하는 거...? 원래 안 그러는데 이거 그대로 가는 거야? //kimmessi
         turn = True
 
 def blue_jjol(x1,x2,y1,y2):
     global turn
-    while(x1-y1!=1 and x1-y1!=-1 and x2-y2!=1 and x2-y2!=-1):
+    while(x1-y1!=1 and x1-y1!=-1 and x2-y2!=-1): #졸도 뒤로 못가는 기물임 , 이것도 //kimmessi
         print("jjol can't move that position")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
@@ -213,8 +213,8 @@ def red_cha(x1,x2,y1,y2):
         sum = 1
         for i in range(x2, y2):
             if(arr_red[x1][i] == "* " and arr_blue[x1][i] == "* "):
-                sum = sum + 1
-        if(sum!=x2-y2):
+                sum+=1
+        if(sum!=y2-x2):             #y2가 x2보다 크다고 설정 했는데 그러면 sum이랑 같을 수가 없어서 수정함.//kimmessi
             print("wrong position")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
@@ -222,8 +222,8 @@ def red_cha(x1,x2,y1,y2):
         sum = 1
         for i in range(x2, y2, -1):
             if(arr_red[x1][i] == "* " and arr_blue[x1][i] == "* "):
-                sum = sum + 1
-        if(sum != y2-x2):
+                sum+=1
+        if(sum != x2-y2):        #이것도. //kimmessi
             print("wrong position")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
@@ -231,7 +231,7 @@ def red_cha(x1,x2,y1,y2):
         sum = 1
         for i in range(x1, y1):
             if(arr_red[i][x2] == "* " and arr_blue[i][x2] == "* "):
-                sum = sum + 1
+                sum+=1
         if(sum!=y1-x1):
             print("wrong position")
             y1 = ord(Movepos_af1())-65
@@ -240,7 +240,7 @@ def red_cha(x1,x2,y1,y2):
         sum = 1
         for i in range(x1, y1, -1):
             if(arr_red[i][x2] == "* " and arr_blue[i][x2] == "* "):
-                sum = sum + 1
+                sum+=1
         if(sum != x1-y1):
             print("wrong position")
             y1 = ord(Movepos_af1())-65
@@ -265,8 +265,8 @@ def blue_cha(x1,x2,y1,y2):
         sum = 1
         for i in range(x2, y2):
             if(arr_red[x1][i] != "* " and arr_blue[x1][i] != "* "):
-                sum = sum + 1
-        if(sum!=x2-y2):
+                sum+=1
+        if(sum!=y2-x2):
             print("wrong position")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
@@ -274,8 +274,8 @@ def blue_cha(x1,x2,y1,y2):
         sum = 1
         for i in range(x2, y2, -1):
             if(arr_red[x1][i] != "* " and arr_blue[x1][i] != "* "):
-                sum = sum + 1
-        if(sum != y2-x2):
+                sum+=1
+        if(sum != x2-y2):
             print("wrong position")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
@@ -283,7 +283,7 @@ def blue_cha(x1,x2,y1,y2):
         sum = 1
         for i in range(x1, y1):
             if(arr_red[i][x2] != "* " and arr_blue[i][x2] != "* "):
-                sum = sum + 1
+                sum+=1
         if(sum!=y1-x1):
             print("wrong position")
             y1 = ord(Movepos_af1())-65
@@ -292,7 +292,7 @@ def blue_cha(x1,x2,y1,y2):
         sum = 1
         for i in range(x1, y1, -1):
             if(arr_red[i][x2] != "* " and arr_blue[i][x2] != "* "):
-                sum = sum + 1
+                sum+=1
         if(sum != x1-y1):
             print("wrong position")
             y1 = ord(Movepos_af1())-65
@@ -365,14 +365,7 @@ def main():
 
 
 '''
-turn #red_turn or blue_turn
-     #red is true, blue is false
-red_Startpos()
-blue_Startpos()
-Movepos_bf1() before move_행지정
-Movepos_bf2() before move_열지정
-Movepos_af1() after move_행지정
-Movepos_af2() after move_열지정 함수들 추가함
+약간 모자란 부분들 수정함
 
 '''
 
