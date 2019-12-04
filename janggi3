@@ -154,7 +154,7 @@ def Movepos_af2():
         Movepos_af2()
 def red_byeong(x1,x2,y1,y2):
     global turn
-    while not(abs(x1-y1)==1 and x2==y2  or x2-y2==1 and x1==y1):   #병은 뒤로 못가는 기물임 , 이건 or로 하는 게 맞을듯..? //kimjeongmin
+    while((abs(x1-y1)==1 and x2==y2)  or (x2-y2==1 and x1==y1)):   #병은 뒤로 못가는 기물임 , 이건 or로 하는 게 맞을듯..? //kimjeongmin
         print("兵이 이동할 수 없는 곳입니다.")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
@@ -170,7 +170,7 @@ def red_byeong(x1,x2,y1,y2):
         turn = True
 def blue_jjol(x1,x2,y1,y2):
     global turn
-    while not(abs(x1-y1)==1 and x2==y2 or x2-y2==-1 and x1==y1): #졸도 뒤로 못가는 기물임 , or로 수정함 //kimjeongmin
+    while((abs(x1-y1)==1 and x2==y2) or (x2-y2==-1 and x1==y1)): #졸도 뒤로 못가는 기물임 , or로 수정함 //kimjeongmin
         print("卒이 이동할 수 없는 곳입니다.")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
