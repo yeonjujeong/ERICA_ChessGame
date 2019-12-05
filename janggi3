@@ -160,7 +160,7 @@ def red_byeong(x1,x2,y1,y2):
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
     if(x1==y1):
-        while(y2-x2!=1):
+        while(y2-x2!=1):                              
             print("兵이 이동할 수 없는 곳입니다.")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1           #병이랑 졸은 뒤로 못가는 기물임. 대각선으로도 못감//kimjeongmin
@@ -349,8 +349,8 @@ def blue_sa(x1,x2,y1,y2):
 
 
 
-def red_po(x1,x2,y1,y2):
-    global turn
+def red_po(x1,x2,y1,y2):   #포에 대한 설명 : 1.포는 포를 잡지 못하고 2.포는 포를 넘지 못한다. 3.포는 다른 기물을 하나 넘어서 가야한다 하지만 두개 이상은 넘지 못한다.
+    global turn            #구현 한 것들 : 다른 기물을 하나 넘어서 가야한다. 하지만 두개 이상은 넘지 못한다.
     while(x1!=y1 and x2!= y2):
         print("기물을 움직일 수 없습니다.")
         y1 = ord(Movepos_af1())-65
@@ -360,7 +360,7 @@ def red_po(x1,x2,y1,y2):
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
     for i in range(0,9):
-        if(arr_red[x1][i]!="* " and x1 == y1 and x2<i):
+        if((arr_red[x1][i]!="* " or arr_blue[x1][i]="* ") and x1 == y1 and x2<i):
             for j in range(i+1,9):
                 if(arr_red[x1][j]!="* "):
                     for k in range(i+1,j):
@@ -379,7 +379,7 @@ def red_po(x1,x2,y1,y2):
                                 print("again red_turn")
                                 break
 
-        if(arr_red[x1][i]!="* " and x1 == y1 and x2>i):
+        if((arr_red[x1][i]!="* " or arr_blue[x1][i]="* ") and x1 == y1 and x2>i):
             for j in range(i-1,-1,-1):
                  if(arr_red[x1][j]!="* "):
                      for k in range(i-1,j,-1):
@@ -398,7 +398,7 @@ def red_po(x1,x2,y1,y2):
                                  print("again red_turn")
                                  break
     for i in range(0,10):
-        if(arr_red[i][x2]!="* " and x2 == y2 and x2<i):
+        if((arr_red[i][x2]!="* " or arr_blue[i][x2]!="* ")and x2 == y2 and x2<i):
             for j in range(i+1,10):
                 if(arr_red[j][x2]!="* "):
                     for k in range(i+1,j):
@@ -416,7 +416,7 @@ def red_po(x1,x2,y1,y2):
                                 turn = True
                                 print("again red_turn")
                                 break
-        if(arr_red[i][x2]!="* " and x2==y2 and x2>i):
+        if((arr_red[i][x2]!="* " or arr_blue[i][x2]!="* ") and x2==y2 and x2>i):
             for j in range(i+1,10):
                 if(arr_red[j][x2]!="* "):
                     for k in range(i+1,j):
@@ -448,7 +448,7 @@ def blue_po(x1,x2,y1,y2):
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
     for i in range(0,9):
-        if(arr_blue[x1][i]!="* " and x1 == y1 and x2<i):
+        if((arr_blue[x1][i]!="* " or arr_red[x1][i]!="* ") and x1 == y1 and x2<i):
             for j in range(i+1,9):
                 if(arr_blue[x1][j]!="* "):
                     for k in range(i+1,j):
@@ -467,7 +467,7 @@ def blue_po(x1,x2,y1,y2):
                                 print("again blue_turn")
                                 break
 
-        if(arr_blue[x1][i]!="* " and x1 == y1 and x2>i):
+        if((arr_blue[x1][i]!="* " or arr_red[x1][i]!="* ")and x1 == y1 and x2>i):
             for j in range(i-1,-1,-1):
                  if(arr_blue[x1][j]!="* "):
                      for k in range(i-1,j,-1):
@@ -486,7 +486,7 @@ def blue_po(x1,x2,y1,y2):
                                  print("again blue_turn")
                                  break
     for i in range(0,10):
-        if(arr_blue[i][x2]!="* " and x2==y2 and x2<i):
+        if((arr_blue[i][x2]!="* " or arr_red[i][x2])and x2==y2 and x2<i):
             for j in range(i+1,10):
                 if(arr_blue[j][x2]!="* "):
                     for k in range(i+1,j):
@@ -505,7 +505,7 @@ def blue_po(x1,x2,y1,y2):
                                 turn = False
                                 break
                                 
-        if(arr_blue[i][x2]!="* " and x2==y2 and x2>i):
+        if((arr_blue[i][x2]!="* " or arr_red[i][x2]) and x2==y2 and x2>i):
             for j in range(i-1,-1,-1):
                 if(arr_blue[j][x2]!="* "):
                     for k in range(i-1,j,-1):
