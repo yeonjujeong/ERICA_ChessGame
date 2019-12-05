@@ -362,7 +362,6 @@ def blue_cho(x1,x2,y1,y2):
 
 def red_ma(x1,x2,y1,y2):
     global turn
-    sum = 0
     while not(y1-x1==2 and abs(y2-x2)==1 and arr_red[x1+1][x2]=="* " and arr_blue[x1+1][x2]=="* " or x1-y1==2 and abs(y2-x2)==1 and arr_red[x1-1][x2]=="* " and arr_blue[x1-1][x2]=="* " or y2-x2==2 and abs(y1-x1)==1 and arr_red[x1][x2+1]=="* " and arr_blue[x1][x2+1]=="* " or x2-y2==2 and abs(y1-x1)==1 and arr_red[x1][x2-1]=="* " and arr_blue[x1][x2-1]=="* "):
         print("기물을 움직일 수 없습니다.")
         y1 = ord(Movepos_af1())-65
@@ -376,8 +375,20 @@ def red_ma(x1,x2,y1,y2):
         arr_blue[x1][x2] = "* "
         turn = False
 
-
-
+def blue_ma(x1,x2,y1,y2):
+    global turn
+    while not(y1-x1==2 and abs(y2-x2)==1 and arr_red[x1+1][x2]=="* " and arr_blue[x1+1][x2]=="* " or x1-y1==2 and abs(y2-x2)==1 and arr_red[x1-1][x2]=="* " and arr_blue[x1-1][x2]=="* " or y2-x2==2 and abs(y1-x1)==1 and arr_red[x1][x2+1]=="* " and arr_blue[x1][x2+1]=="* " or x2-y2==2 and abs(y1-x1)==1 and arr_red[x1][x2-1]=="* " and arr_blue[x1][x2-1]=="* "):
+        print("기물을 움직일 수 없습니다.")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
+    if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
+        arr_blue[y1][y2] = "馬"
+        arr_blue[x1][x2] = "* "
+        turn = True
+    elif(arr_red[y1][y2]!="* "):
+        arr_blue[y1][y2] = "馬"
+        arr_red[y1][y2] = "* "
+        turn = True
 
 def red_run():
     global turn
@@ -440,6 +451,8 @@ def blue_run():
     if(arr_blue[x1][x2] == "漢"):
         blue_cho(x1,x2,y1,y2)
 
+    if(arr_blue[x1][x2] == "馬"):
+        blue_ma(x1,x2,y1,y2)
 
 def main():
     print("장기하-자.")
