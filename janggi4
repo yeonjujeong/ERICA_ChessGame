@@ -94,7 +94,11 @@ def Board():
                     print(C_BLUE+arr_blue[i][j]+C_WHITE)
                 elif(arr_blue[i][j]=="* "):
                     print(C_RED+arr_red[i][j]+C_WHITE)
-        if(i!=9):
+        if(i==0 or i==7):
+            print("    |    |    |    | \  |  / |    |    |    |")
+        elif(i==1 or i==8):
+            print("    |    |    |    | /  |  \ |    |    |    |")
+        elif(i!=9):
             print("    |"*9)
     if(turn):
         print("this turn is red")
