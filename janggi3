@@ -307,24 +307,29 @@ def blue_cha(x1,x2,y1,y2):
         arr_red[x1][x2] = "* "
         print("again blue_turn")
         turn = False
+
 def red_sa(x1,x2,y1,y2):
     global turn
+    print("11")
     while(x1!=y1 and x2!= y2 or arr_red[y1][y2]!="* "):
         print("기물을 움직일 수 없습니다.")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
-    while(0<=y1<=2 and 3<=y2<=5):
-        if(arr_blue[y1][y2]=="* "):
-            arr_red[y1][y2]="士"
-            arr_red[x1][x2]="* "
-            print("blue_turn")
-            trun = False
-        elif(arr_blue[y1][y2]!="* "):
-            arr_blue[y1][y2]="* "
-            arr_red[x1][x2]="* "
-            arr_red[y1][y2]="士"
-            print("again red_turn")
-            turn = True
+
+    if(0<=y1<=2 and 3<=y2<=5):
+        if(arr_blue[y1][y2]=="* " and arr_red[y1][y2]=="* "):
+             print("222221")
+             arr_red[y1][y2]="士"
+             arr_red[x1][x2]="* "
+             print("blue_turn")
+             trun = False           
+    else:
+            print("wrong position")
+            y1 = ord(Movepos_af1())-65
+            y2 = Movepos_af2()-1
+ 
+
+        
 def blue_sa(x1,x2,y1,y2):
     global turn
     while(x1!=y1 and x2!= y2 or arr_blue[y1][y2]!="* "):
@@ -524,6 +529,52 @@ def blue_po(x1,x2,y1,y2):
                                 turn = False
                                 break
                                 
+def red_han(x1,x2,y1,y2):
+    global turn
+    while not(0<=y1<=2 and 3<=y2<=5):
+        print("기물을 움직일 수 없습니다.")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
+
+    y1 = ord(Movepos_af1())-65
+    y2 = Movepos_af2()-1
+   
+    if(0<=y1<=2 and 3<=y2<=5):
+    
+        if(arr_blue[y1][y2]=="* " and arr_red[y1[y2]="* "):
+            arr_red[y1][y2]="漢"
+            arr_red[x1][x2]="* "
+            print("blue_turn")
+            trun = False
+        elif(arr_blue[y1][y2]!="* "):
+            arr_blue[y1][y2]="* "
+            arr_red[x1][x2]="* "
+            arr_red[y1][y2]="漢"
+            print("again red_turn")
+            turn = True
+
+
+
+def blue_cho(x1,x2,y1,y2):
+    global turn
+    while not(0<=y1<=2 and 7<=y2<=9):
+        print("기물을 움직일 수 없습니다.")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
+    while(0<=y1<=2 and 7<=y2<=9):
+        if(arr_red[y1][y2]=="* "):
+            arr_blue[y1][y2]="漢"
+            arr_blue[x1][x2]="* "
+            arr_blue[x1][x2]="*"
+            print("red_turn")
+            turn = True
+        elif(arr_red[y1][y2]!="* "):
+            arr_red[y1][y2]="* "
+            arr_blue[x1][x2]="* "
+            arr_blue[y1][y2]="漢"
+            print("again blue_turn")
+            turn = False
+
 
 
 def red_run():
@@ -550,6 +601,10 @@ def red_run():
 
     if(arr_red[x1][x2] == "包"):
         red_po(x1,x2,y1,y2)
+    if(arr_red[x1[x2] == "漢");
+        red_han(x1,x2,y1,y2):
+
+
 
 def blue_run():
     global turn
@@ -576,6 +631,10 @@ def blue_run():
 
     if(arr_blue[x1][x2] == "包"):
         blue_po(x1,x2,y1,y2)
+        
+    if(arr_blue[x1[x2] == "漢");
+        blue_cho(x1,x2,y1,y2):
+
 
 def main():
     print("장기하-자.")
