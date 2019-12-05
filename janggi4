@@ -321,14 +321,12 @@ def red_sa(x1,x2,y1,y2):
              arr_red[y1][y2]="士"
              arr_red[x1][x2]="* "
              print("blue_turn")
-             trun = False           
+             turn = False           
     else:
-            print("wrong position")
-            y1 = ord(Movepos_af1())-65
-            y2 = Movepos_af2()-1
+        print("wrong position")
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
  
-
-        
 def blue_sa(x1,x2,y1,y2):
     global turn
     while(x1!=y1 and x2!= y2 or arr_blue[y1][y2]!="* "):
@@ -354,9 +352,7 @@ def red_han(x1,x2,y1,y2):
             arr_red[y1][y2]="漢"
             arr_red[x1][x2]="* "
             print("blue_turn")
-            trun = False
-
-
+            turn = False
 
 def blue_cho(x1,x2,y1,y2):
     global turn
@@ -371,8 +367,6 @@ def blue_cho(x1,x2,y1,y2):
             arr_blue[x1][x2]="*"
             print("red_turn")
             turn = True
-
-
 
 def red_run():
     global turn
