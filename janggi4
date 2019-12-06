@@ -255,8 +255,9 @@ def red_cha(x1,x2,y1,y2):
             print("wrong position")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
-    if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
+    if(arr_blue[y1][y2]!="* "):
         arr_red[y1][y2] = "車"
+        arr_blue[y1][y2] = "* "
         arr_red[x1][x2] = "* "
     elif(arr_blue[y1][y2]!="* "):
         arr_red[y1][y2] = "車"
@@ -305,8 +306,9 @@ def blue_cha(x1,x2,y1,y2):
             print("wrong position")
             y1 = ord(Movepos_af1())-65
             y2 = Movepos_af2()-1
-    if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
+    if(arr_red[y1][y2]!="* "):
         arr_blue[y1][y2] = "車"
+        arr_red[y1][y2] = "* "
         arr_blue[x1][x2] = "* "
     elif(arr_red[y1][y2]!="* "):    
         arr_blue[y1][y2] = "車"
