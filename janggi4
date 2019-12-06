@@ -577,7 +577,61 @@ def blue_po(x1,x2,y1,y2):
                                 print("again blue_turn")
                                 turn = False
                                 break
-                                
+def red_shang(x1,x2,y1,y2):
+    global turn
+    sum = 1
+    while(sum!=0):
+        if not(y1-x1==3 and y2-x2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2+1]=="* " and arr_red[x1+2][x2+1]=="* " ):
+            sum = 1
+        elif not(y1-x1==3 and x2-y2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2-1]=="* " and arr_red[x1+2][x2-1]=="* " ):
+            sum = 1
+        elif not(x1-y1==3 and y2-x2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2+1]=="* " and arr_red[x1-2][x2+1]=="* " ):
+            sum = 1
+        elif not(x1-y1==3 and x2-y2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2-1]=="* " and arr_red[x1-2][x2-1]=="* " ):
+            sum = 1
+        else:
+            sum = 0
+            break
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
+    if(arr_blue[y1][y2]=="* " and arr_red[y1][y2]=="* "):
+        arr_red[y1][y2] = "象"
+        arr_red[x1][x2] = "* "
+    elif(arr_blue[y1][y2]!="* "):
+        arr_red[y1][y2] = "象"
+        arr_red[x1][x2] = "* "
+        arr_blue[y1][y2] = "* "
+
+def blue_shang(x1,x2,y1,y2):
+    global turn
+    sum = 1
+    while(sum!=0):
+        if not(y1-x1==3 and y2-x2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2+1]=="* " and arr_red[x1+2][x2+1]=="* " ):
+            sum += 1
+            print("aa")
+        if not(y1-x1==3 and x2-y2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2-1]=="* " and arr_red[x1+2][x2-1]=="* " ):
+            sum += 1
+            print("bb")
+        if not(x1-y1==3 and y2-x2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2+1]=="* " and arr_red[x1-2][x2+1]=="* " ):
+            sum += 1
+            print("cc")
+        if not(x1-y1==3 and x2-y2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2-1]=="* " and arr_red[x1-2][x2-1]=="* " ):
+            sum += 1
+            print("dd")
+        if(sum==1):
+            sum = 0
+            print("ggggg")
+            break
+        y1 = ord(Movepos_af1())-65
+        y2 = Movepos_af2()-1
+    if(arr_blue[y1][y2]=="* " and arr_red[y1][y2]=="* "):
+        arr_blue[y1][y2] = "象"
+        arr_blue[x1][x2] = "* "
+    elif(arr_red[y1][y2]!="* "):
+        arr_blue[y1][y2] = "象"
+        arr_blue[x1][x2] = "* "
+        arr_red[y1][y2] = "* "
+   
 def red_run():
     global turn
     x1 = ord(Movepos_bf1())-65
@@ -610,6 +664,8 @@ def red_run():
     if(arr_red[x1][x2] == "馬"):
         red_ma(x1,x2,y1,y2)
 
+    if(arr_red[x1][x2] == "象"):
+        red_shang(x1,x2,y1,y2)
 
 def blue_run():
     global turn
@@ -642,6 +698,9 @@ def blue_run():
 
     if(arr_blue[x1][x2] == "馬"):
         blue_ma(x1,x2,y1,y2)
+   
+    if(arr_blue[x1][x2] == "象"):
+        blue_shang(x1,x2,y1,y2)
 
 def main():
     print("장기하-자.")
