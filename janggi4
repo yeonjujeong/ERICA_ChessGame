@@ -306,11 +306,26 @@ def blue_cha(x1,x2,y1,y2):
     turn = True
 
 def red_sa(x1,x2,y1,y2):
-    global turn
+    global turn    
     while(x1!=y1 and x2!=y2 or arr_red[y1][y2]!="* " or 0>y1 or y1>2 or 3>y2 or y2>5):
+        if(x1==0 and x2==3):
+            if(y1==0 and y2==4 or y1==1 and y2==3 or y1==1 and y2==4):
+                break
+        elif(x1==0 and x2==5):
+            if(y1==0 and y2==4 or y1==1 and y2==4 or y1==1 and y2==5):
+                break
+        elif(x1==2 and x2==3):
+            if(y1==2 and y2==4 or y1==1 and y2==4 or y1==2 and y2==3):
+                break
+        elif(x1==2 and x2==5):
+            if(y1==2 and y2==4 or y1==1 and y2==4 or y1==1 and y2==5):
+                break
+        elif(x1==1 and x2==4):
+            if(y1==0 and y2==3 or y1==0 and y2==4 or y1==0 and y2==5 or y1==1 and y2==3 or y1==1 and y2==5 or y1==2 and y2==3 or y1==2 and y2==4 or y1==2 and y2==5):
+                break
         print("기물을 움직일 수 없습니다.")
         y1 = ord(Movepos_af1())-65
-        y2 = Movepos_af2()-1
+        y2 = Movepos_af2()-1 
     if(arr_blue[y1][y2]=="* "):
         arr_red[y1][y2]="士"
         arr_red[x1][x2]="* "
@@ -326,6 +341,21 @@ def red_sa(x1,x2,y1,y2):
 def blue_sa(x1,x2,y1,y2):
     global turn
     while(x1!=y1 and x2!= y2 or arr_blue[y1][y2]!="* " or 7>y1 or y1>9 or 3>y2 or y2>5):
+        if(x1==9 and x2==5):
+            if(y1==9 and y2==4 or y1==8 and y2==5 or y1==8 and y2==4):
+                break
+        elif(x1==9 and x2==5):
+            if(y1==9 and y2==4 or y1==8 and y2==4 or y1==8 and y2==3):
+                break
+        elif(x1==7 and x2==3):
+            if(y1==7 and y2==4 or y1==8 and y2==4 or y1==7 and y2==5):
+                break
+        elif(x1==7 and x2==5):
+            if(y1==7 and y2==4 or y1==8 and y2==4 or y1==8 and y2==3):
+                break
+        elif(x1==8 and x2==4):
+            if(y1==9 and y2==5 or y1==9 and y2==4 or y1==9 and y2==3 or y1==8 and y2==5 or y1==8 and y2==3 or y1==7 and y2==5 or y1==7 and y2==4 or y1==7 and y2==3):
+                break
         print("기물을 움직일 수 없습니다.")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
@@ -711,10 +741,6 @@ def main():
             blue_run()
 
 
-'''
-병함수랑 졸함수 약간 수정함. 근데 약간 장기대로 할라고 다시 만들다보니 오류 생겼음;
-포 함수 만드는 중 ...
 
-'''
 
 main()
