@@ -186,7 +186,8 @@ def red_byeong(x1,x2,y1,y2):
         arr_red[x1][x2] = "* "
     elif(arr_blue[y1][y2]!="* "):
         arr_red[y1][y2] = "兵"
-        arr_blue[x1][x2] = "* "         
+        arr_red[x1][x2] = "* "
+        arr_blue[y1][y2] = "* "         
     turn = False
 
 def blue_jjol(x1,x2,y1,y2):
@@ -210,7 +211,8 @@ def blue_jjol(x1,x2,y1,y2):
         arr_blue[x1][x2] = "* "
     elif(arr_red[y1][y2]!="* "):
         arr_blue[y1][y2] = "卒"
-        arr_red[x1][x2] = "* "
+        arr_blue[x1][x2] = "* "
+        arr_red[y1][y2] = "* "
     turn = True
 
 def red_cha(x1,x2,y1,y2):
@@ -261,7 +263,8 @@ def red_cha(x1,x2,y1,y2):
         arr_red[x1][x2] = "* "
     elif(arr_blue[y1][y2]!="* "):
         arr_red[y1][y2] = "車"
-        arr_blue[x1][x2] = "* "
+        arr_red[x1][x2] = "* "
+        arr_blue[y1][y2] = "* "
     turn = False
 
 def blue_cha(x1,x2,y1,y2):
@@ -312,7 +315,8 @@ def blue_cha(x1,x2,y1,y2):
         arr_blue[x1][x2] = "* "
     elif(arr_red[y1][y2]!="* "):    
         arr_blue[y1][y2] = "車"
-        arr_red[x1][x2] = "* "
+        arr_blue[x1][x2] = "* "
+        arr_red[y1][y2] = "* "
     turn = True
 
 def red_sa(x1,x2,y1,y2):
@@ -380,7 +384,8 @@ def red_ma(x1,x2,y1,y2):
         arr_red[x1][x2] = "* "
     elif(arr_blue[y1][y2]!="* "):
         arr_red[y1][y2] = "馬"
-        arr_blue[x1][x2] = "* "
+        arr_red[x1][x2] = "* "
+        arr_blue[y1][y2] = "* "
     turn = False
 
 def blue_ma(x1,x2,y1,y2):
@@ -394,8 +399,10 @@ def blue_ma(x1,x2,y1,y2):
         arr_blue[x1][x2] = "* "
     elif(arr_red[y1][y2]!="* "):
         arr_blue[y1][y2] = "馬"
+        arr_blue[x1][x2] = "* "
         arr_red[y1][y2] = "* "
     turn = True
+
 def red_po(x1,x2,y1,y2):   #포에 대한 설명 : 1.포는 포를 잡지 못하고 2.포는 포를 넘지 못한다. 3.포는 다른 기물을 하나 넘어서 가야한다 하지만 두개 이상은 넘지 못한다.
     global turn            #구현 한 것들 : 다른 기물을 하나 넘어서 가야한다. 하지만 두개 이상은 넘지 못한다.
     while(x1!=y1 and x2!= y2):
