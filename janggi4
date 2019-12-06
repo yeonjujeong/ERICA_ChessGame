@@ -167,53 +167,39 @@ def Movepos_af2():
 
 def red_byeong(x1,x2,y1,y2):
     global turn
-    if(x2==y2):
-        while(abs(x1-y1)!=1 or x1>=y1):
-            print("兵이 이동할 수 없는 곳입니다.")
-            y1 = ord(Movepos_af1())-65
-            y2 = Movepos_af2()-1
-    if(x1==y1):
-        while(y2-x2!=1):                              
-            print("兵이 이동할 수 없는 곳입니다.")
-            y1 = ord(Movepos_af1())-65
-            y2 = Movepos_af2()-1     
-    if(x1!=y1 and x2!=y2):
+    while(x1==y1 and y1==y2 or x2==y2 and y1-x1!=1 or x1==y1 and abs(x2-y2)!=1):
         print("兵이 이동할 수 없는 곳입니다.")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1 
-    if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
+    if(arr_blue[y1][y2]=="* " and arr_red[y1][y2]=="* "):
         arr_red[y1][y2] = "兵"
         arr_red[x1][x2] = "* "
+        turn = False
+        print("blue_turn")
     elif(arr_blue[y1][y2]!="* "):
         arr_red[y1][y2] = "兵"
         arr_red[x1][x2] = "* "
         arr_blue[y1][y2] = "* "         
-    turn = False
+        turn = True
+        print("again red_turn")
 
 def blue_jjol(x1,x2,y1,y2):
     global turn
-    if(x2==y2):
-        while not(abs(x1-y1)==1 or y1>=x1):
-            print("卒이 이동할 수 없는 곳입니다.")
-            y1 = ord(Movepos_af1())-65
-            y2 = Movepos_af2()-1
-    if(x1==y1):
-        while not(abs(y2-x2)==1 and x1==y1):
-            print("卒이 이동할 수 없는 곳입니다.")
-            y1 = ord(Movepos_af1())-65
-            y2 = Movepos_af2()-1
-    while not(x1==y1 or x2==y2):
+    while(x1==y1 and y1==y2 or x2==y2 and y1-x1!=-1 or x1==y1 and abs(x2-y2)!=1):
         print("卒이 이동할 수 없는 곳입니다.")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1 
     if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
         arr_blue[y1][y2] = "卒"
         arr_blue[x1][x2] = "* "
+        turn = True
+        print("again red_turn")
     elif(arr_red[y1][y2]!="* "):
         arr_blue[y1][y2] = "卒"
         arr_blue[x1][x2] = "* "
         arr_red[y1][y2] = "* "
-    turn = True
+        turn = False
+        print("again blue_turn")
 
 def red_cha(x1,x2,y1,y2):
     global turn
