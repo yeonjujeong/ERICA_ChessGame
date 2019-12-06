@@ -339,7 +339,7 @@ def red_sa(x1,x2,y1,y2):
 
 def blue_sa(x1,x2,y1,y2):
     global turn
-    while(x1!=y1 and x2!= y2 or arr_blue[y1][y2]!="* " or 0>y1 or y1>2 or 7>y2 or y2>9):
+    while(x1!=y1 and x2!= y2 or arr_blue[y1][y2]!="* " or 7>y1 or y1>9 or 3>y2 or y2>5):
         print("기물을 움직일 수 없습니다.")
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
