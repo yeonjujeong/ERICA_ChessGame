@@ -502,7 +502,7 @@ def red_po(x1,x2,y1,y2):
                                  turn = False
                                  break
     for i in range(0,10):
-        if((arr_red[i][x2]!="* " or arr_blue[i][x2]!="* ")and x2 == y2 and x2<i):
+        if((arr_red[i][x2]!="* " or arr_blue[i][x2]!="* ")and x2 == y2 and x1<i):
             for j in range(i+1,10):
                 if(arr_red[j][x2]!="* "):
                     for k in range(i+1,j):
@@ -518,7 +518,7 @@ def red_po(x1,x2,y1,y2):
                                 arr_red[x1][x2]="* "
                                 turn = False
                                 break
-        if((arr_red[i][x2]!="* " or arr_blue[i][x2]!="* ") and x2==y2 and x2>i):
+        if((arr_red[i][x2]!="* " or arr_blue[i][x2]!="* ") and x2==y2 and x1>i):
             for j in range(i+1,10):
                 if(arr_red[j][x2]!="* "):
                     for k in range(i+1,j):
@@ -578,7 +578,7 @@ def blue_po(x1,x2,y1,y2):
                                  turn = True
                                  break
     for i in range(0,10):
-        if((arr_blue[i][x2]!="* " or arr_red[i][x2]!="* ")and x2==y2 and x2<i):
+        if((arr_blue[i][x2]!="* " or arr_red[i][x2]!="* ")and x2==y2 and x1<i):
             for j in range(i+1,10):
                 if(arr_blue[j][x2]!="* "):
                     for k in range(i+1,j):
@@ -595,7 +595,7 @@ def blue_po(x1,x2,y1,y2):
                                 turn = True
                                 break
                                 
-        if((arr_blue[i][x2]!="* " or arr_red[i][x2]!="* ") and x2==y2 and x2>i):
+        if((arr_blue[i][x2]!="* " or arr_red[i][x2]!="* ") and x2==y2 and x1>i):
             for j in range(i-1,-1,-1):
                 if(arr_blue[j][x2]!="* "):
                     for k in range(i-1,j,-1):
