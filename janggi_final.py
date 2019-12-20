@@ -445,104 +445,106 @@ def red_ma(x1,x2,y1,y2):
         arr_blue[y1][y2] = "* "
     turn = False
 
-def red_po(x1,x2,y1,y2):
-    global turn
-    while(x1!=y1 and x2!= y2 or arr_red[y1][y2]!="* "):
-        print("기물을 움직일 수 없습니다.")
-        main_run()
-    for i in range(0,9):
-        if(x1==y1 and x2<i):
-            if((arr_red[x1][i]!="* " or arr_blue[x1][i]!="* ") and arr_red[x1][i]!="包" and arr_blue[x1][i]!="包" and x1==y1 and x2<i):
-                for j in range(i+1,9):
-                    if(arr_red[x1][j]!="* "):
-                        for k in range(i+1,j):
-                            if(k==y2):
-                                if(arr_blue[x1][k]=="* "):
-                                    arr_red[y1][k]="包"
-                                    arr_red[x1][x2]="* "
-                                    turn = False
-                                    break
-                                elif(arr_blue[x1][k]=="包"):
-                                    print("기물을 움직일 수 없습니다.")
-                                    main_run()
-                                elif(arr_blue[x1][k]!="* "):
-                                    arr_blue[x2][k]="* "
-                                    arr_red[x2][k]="包 "
-                                    arr_red[x1][x2]="* "
-                                    turn = False
-                                    break
-            elif((arr_red[x1][i]!="* " or arr_blue[x1][i]!="* ") and arr_red[x1][i]!="包" and arr_blue[x1][i]!="包" and x1 == y1 and x2>i):
-                for j in range(i-1,-1,-1):
-                    if(arr_red[x1][j]!="* "):
-                        for k in range(i-1,j,-1):
-                            if(k==y2):
-                                if(arr_blue[x1][k]=="* "):
-                                    arr_red[y1][k]="包"
-                                    arr_red[x1][x2]="* "
-                                    turn =False
-                                    break
-                                elif(arr_blue[x1][k]=="包"):
-                                    print("기물을 움직일 수 없습니다.")
-                                main_run()
-                                elif(arr_blue[x1][k]!="* "):
-                                    arr_red[y1][k]="包 "
-                                    arr_red[x1][x2]="* "
-                                    arr_blue[x1][k]=""
-                                    turn = False
-                                    break
-            else:
-                print("다시 기물을 움직일 수 없습니다.")
-                main_run()
-    for i in range(0,10):
-        if((arr_red[i][x2]!=" " or arr_blue[i][x2]!="* ") and arr_red[i][x2]!="包" and arr_blue[i][x2]!="包" and x2 == y2 and x2<i):
-            for j in range(i+1,10):
-                if(arr_red[j][x2]!="* "):
-                    for k in range(i+1,j):
-                        if(k==y1):
-                            if(arr_blue[k][y2]=="* "):
-                                arr_red[k][y2]="包"
-                                arr_red[x1][x2]="* "
-                                turn = False
-                                break
-                            elif(arr_blue[k][y2]=="包"):
-                                print("기물을 움직일 수 없습니다.")
-                                main_run()
-                            elif(arr_blue[k][y2]!="* "):
-                                arr_blue[k][y2]="* "
-                                arr_red[k][y2]="包"
-                                arr_red[x1][x2]="* "
-                                turn = False
-                                break
-        elif((arr_red[i][x2]!="* " or arr_blue[i][x2]!="* ") and arr_red[i][x2]!="包" and arr_blue[i][x2]!="包" and x2==y2 and x2>i):
-            for j in range(i+1,10):
-                if(arr_red[j][x2]!="* "):
-                    for k in range(i+1,j):
-                        if(k==y1):
-                            if(arr_blue[k][y2]=="* "):
-                                arr_red[k][y2]="包"
-                                arr_red[x1][x2]="* "
-                                turn = False
-                                break
-                            elif(arr_blue[k][y2]=="包"):
-                                print("기물을 움직일 수 없습니다.")
-                                main_run()
-                            elif(arr_blue[k][y2]!="* "):
-                                arr_blue[k][y2]="* "
-                                arr_red[k][y2]="包"
-                                arr_red[x1][x2]="* "
-                                turn = False
-                                break
-        else:
-            print("다시 기물을 움직일 수 없습니다.")
-            main_run()
 
+    global turn
+    while not(y1-x1==2 and abs(y2-x2)==1 and arr_red[x1+1][x2]=="* " and arr_blue[x1+1][x2]=="* " or x1-y1==2 and abs(y2-x2)==1 and arr_red[x1-1][x2]=="* " and arr_blue[x1-1][x2]=="* " or y2-x2==2 and abs(y1-x1)==1 and arr_red[x1][x2+1]=="* " and arr_blue[x1][x2+1]=="* " or x2-y2==2 and abs(y1-x1)==1 and arr_red[x1][x2-1]=="* " and arr_blue[x1][x2-1]=="* "):
+        print("wrong position")
+        blue_run()
+    if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
+        arr_blue[y1][y2] = "馬"
+        arr_blue[x1][x2] = "* "
+    elif(arr_red[y1][y2]!="* "):
+        arr_blue[y1][y2] = "馬"
+        arr_blue[x1][x2] = "* "
+        arr_red[y1][y2] = "* "
+    turn = True
+
+def red_po(x1,x2,y1,y2):  
+    global turn          
+    while(x1!=y1 and x2!= y2):
+        print("wrong position")
+        red_run()
+    while(arr_red[y1][y2]!="* "):
+        print("wrong position")
+        red_run()
+    for i in range(0,9):
+        if((arr_red[x1][i]!="* " or arr_blue[x1][i]!="* ") and x1 == y1 and x2<i):
+            for j in range(i+1,9):
+                if(arr_red[x1][j]!="* "):
+                    for k in range(i+1,j):
+                        if(k==y2):
+                            if(arr_blue[x1][k]=="* "):
+                                arr_red[y1][k]="包"
+                                arr_red[x1][x2]="* "
+                                turn = False
+                                break
+                            elif(arr_blue[x1][k]!="* "):
+                                arr_blue[x2][k]="* "
+                                arr_red[x2][k]="包 "
+                                arr_red[x1][x2]="* "
+                                turn = False
+                                break
+
+        if((arr_red[x1][i]!="* " or arr_blue[x1][i]!="* ") and x1 == y1 and x2>i):
+            for j in range(i-1,-1,-1):
+                 if(arr_red[x1][j]!="* "):
+                     for k in range(i-1,j,-1):
+                         if(k==y2):
+                             if(arr_blue[x1][k]=="* "): 
+                                 arr_red[y1][k]="包"
+                                 arr_red[x1][x2]="* "
+                                 turn =False
+                                 break
+                             elif(arr_blue[x1][k]!="* "):
+                                 arr_red[y1][k]="包 "
+                                 arr_red[x1][x2]="* "
+                                 arr_blue[x1][k]="*"
+                                 turn = False
+                                 break
+    for i in range(0,10):
+        if((arr_red[i][x2]!="* " or arr_blue[i][x2]!="* ")and x2 == y2 and x2<i):
+            for j in range(i+1,10):
+                if(arr_red[j][x2]!="* "):
+                    for k in range(i+1,j):
+                        if(k==y1):
+                            if(arr_blue[k][y2]=="* "):
+                                arr_red[k][y2]="包"
+                                arr_red[x1][x2]="* "
+                                turn = False
+                                break
+                            elif(arr_blue[k][y2]!="* "):
+                                arr_blue[k][y2]="* "
+                                arr_red[k][y2]="包"
+                                arr_red[x1][x2]="* "
+                                turn = False
+                                break
+        if((arr_red[i][x2]!="* " or arr_blue[i][x2]!="* ") and x2==y2 and x2>i):
+            for j in range(i+1,10):
+                if(arr_red[j][x2]!="* "):
+                    for k in range(i+1,j):
+                        if(k==y1):
+                            if(arr_blue[k][y2]=="* "):
+                                arr_red[k][y2]="包"
+                                arr_red[x1][x2]="* "
+                                turn = False
+                                break
+                            elif(arr_blue[k][y2]!="* "):
+                                arr_blue[k][y2]="* "
+                                arr_red[k][y2]="包"
+                                arr_red[x1][x2]="* "
+                                turn = False
+                                break
+                                
 def blue_po(x1,x2,y1,y2):
     global turn
-    while(x1!=y1 and x2!= y2 or arr_red[y1][y2]!="* "):
-        print("기물을 움직일 수 없습니다.")
-        main_run()
+    while(x1!=y1 and x2!= y2):
+        print("wrong position")
+        blue_run()
+    while(arr_red[y1][y2]!="* "):
+        print("wrong position")
+        blue_run()
     for i in range(0,9):
-        if((arr_blue[x1][i]!="* " or arr_red[x1][i]!="* ") and arr_blue[x1][i]!="包" and arr_red[x1][i]!="包" and x1 == y1 and x2<i):
+        if((arr_blue[x1][i]!="* " or arr_red[x1][i]!="* ") and x1 == y1 and x2<i):
             for j in range(i+1,9):
                 if(arr_blue[x1][j]!="* "):
                     for k in range(i+1,j):
@@ -552,17 +554,14 @@ def blue_po(x1,x2,y1,y2):
                                 arr_blue[x1][x2]="* "
                                 turn = True
                                 break
-                            elif(arr_red[x1][k]=="包"):
-                                print("기물을 움직일 수 없습니다.")
-                                main_run()
                             elif(arr_red[x1][k]!="* "):
                                 arr_red[x2][k]="* "
                                 arr_blue[x2][k]="包 "
                                 arr_blue[x1][x2]="* "
                                 turn = True
-                                  break
+                                break
 
-        elif((arr_blue[x1][i]!="* " or arr_red[x1][i]!="* ") and arr_blue[x1][i]!="包" and arr_red[x1][i]!="包" and x1 == y1 and x2>i):
+        if((arr_blue[x1][i]!="* " or arr_red[x1][i]!="* ")and x1 == y1 and x2>i):
             for j in range(i-1,-1,-1):
                  if(arr_blue[x1][j]!="* "):
                      for k in range(i-1,j,-1):
@@ -572,20 +571,14 @@ def blue_po(x1,x2,y1,y2):
                                  arr_blue[x1][x2]="* "
                                  turn = True
                                  break
-                             elif(arr_red[x1][k]=="包"):
-                                print("기물을 움직일 수 없습니다.")
-                                main_run()
                              elif(arr_red[x1][k]!="* "):
                                  arr_blue[y1][k]="包 "
                                  arr_blue[x1][x2]="* "
                                  arr_red[x1][k]="*"
                                  turn = True
                                  break
-        else:
-            print("다시 기물을 움직일 수 없습니다.")
-            main_run()
     for i in range(0,10):
-        if((arr_blue[i][x2]!="* " or arr_red[i][x2]!="* ") and arr_blue[i][x2]!="包" and arr_red[i][x2]!="包" and x2==y2 and x2<i):
+        if((arr_blue[i][x2]!="* " or arr_red[i][x2]!="* ")and x2==y2 and x2<i):
             for j in range(i+1,10):
                 if(arr_blue[j][x2]!="* "):
                     for k in range(i+1,j):
@@ -601,8 +594,8 @@ def blue_po(x1,x2,y1,y2):
                                 arr_blue[x1][x2]="* "
                                 turn = True
                                 break
-                            
-        elif((arr_blue[i][x2]!="* " or arr_red[i][x2]!="* ")and arr_blue[i][x2]!="包" and arr_red[i][x2]!="包" and x2==y2 and x2>i):
+                                
+        if((arr_blue[i][x2]!="* " or arr_red[i][x2]!="* ") and x2==y2 and x2>i):
             for j in range(i-1,-1,-1):
                 if(arr_blue[j][x2]!="* "):
                     for k in range(i-1,j,-1):
@@ -610,35 +603,14 @@ def blue_po(x1,x2,y1,y2):
                             if(arr_red[k][y2]=="* "):
                                 arr_blue[k][y2]="包"
                                 arr_blue[x1][x2]="* "
-                                turn = True
+                                trun = True
                                 break
-                            elif(arr_red[k][y2]=="包"):
-                                print("기물을 움직일 수 없습니다.")
-                                main_run()
                             elif(arr_red[k][y2]!="* "):
                                 arr_blue[k][y2]="* "
                                 arr_red[k][y2]="包"
                                 arr_red[x1][x2]="* "
                                 turn = True
                                 break
-        else:
-            print("다시 기물을 움직일 수 없습니다.")
-            main_run()
-
-def blue_ma(x1,x2,y1,y2):
-    global turn
-    while not(y1-x1==2 and abs(y2-x2)==1 and arr_red[x1+1][x2]=="* " and arr_blue[x1+1][x2]=="* " or x1-y1==2 and abs(y2-x2)==1 and arr_red[x1-1][x2]=="* " and arr_blue[x1-1][x2]=="* " or y2-x2==2 and abs(y1-x1)==1 and arr_red[x1][x2+1]=="* " and arr_blue[x1][x2+1]=="* " or x2-y2==2 and abs(y1-x1)==1 and arr_red[x1][x2-1]=="* " and arr_blue[x1][x2-1]=="* "):
-        print("wrong position")
-        blue_run()
-    if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
-        arr_blue[y1][y2] = "馬"
-        arr_blue[x1][x2] = "* "
-    elif(arr_red[y1][y2]!="* "):
-        arr_blue[y1][y2] = "馬"
-        arr_blue[x1][x2] = "* "
-        arr_red[y1][y2] = "* "
-    turn = True
-
 
 def red_shang(x1,x2,y1,y2):
     global turn
