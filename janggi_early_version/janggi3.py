@@ -365,7 +365,7 @@ def red_po(x1,x2,y1,y2):   #포에 대한 설명 : 1.포는 포를 잡지 못하
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
     for i in range(0,9):
-        if((arr_red[x1][i]!="* " or arr_blue[x1][i]="* ") and x1 == y1 and x2<i):
+        if((arr_red[x1][i]!="* " or arr_blue[x1][i]=="* " and x1 == y1 and x2<i):
             for j in range(i+1,9):
                 if(arr_red[x1][j]!="* "):
                     for k in range(i+1,j):
@@ -536,11 +536,7 @@ def red_han(x1,x2,y1,y2):
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
 
-    y1 = ord(Movepos_af1())-65
-    y2 = Movepos_af2()-1
-   
-    if(0<=y1<=2 and 3<=y2<=5):
-    
+    if(0<=y1<=2 and 3<=y2<=5):    
         if(arr_blue[y1][y2]=="* " and arr_red[y1[y2]="* "):
             arr_red[y1][y2]="漢"
             arr_red[x1][x2]="* "
@@ -562,10 +558,9 @@ def blue_cho(x1,x2,y1,y2):
         y1 = ord(Movepos_af1())-65
         y2 = Movepos_af2()-1
     while(0<=y1<=2 and 7<=y2<=9):
-        if(arr_red[y1][y2]=="* "):
+        if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
             arr_blue[y1][y2]="漢"
             arr_blue[x1][x2]="* "
-            arr_blue[x1][x2]="*"
             print("red_turn")
             turn = True
         elif(arr_red[y1][y2]!="* "):
@@ -599,8 +594,6 @@ def red_run():
     if(arr_red[x1][x2] == "士"):
         red_sa(x1,x2,y1,y2)
 
-    if(arr_red[x1][x2] == "包"):
-        red_po(x1,x2,y1,y2)
     if(arr_red[x1[x2] == "漢");
         red_han(x1,x2,y1,y2):
 
@@ -629,9 +622,7 @@ def blue_run():
     if(arr_blue[x1][x2] == "士"):
         blue_sa(x1,x2,y1,y2)
 
-    if(arr_blue[x1][x2] == "包"):
-        blue_po(x1,x2,y1,y2)
-        
+            
     if(arr_blue[x1[x2] == "漢");
         blue_cho(x1,x2,y1,y2):
 
