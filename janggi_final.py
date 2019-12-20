@@ -648,18 +648,14 @@ def blue_po(x1,x2,y1,y2):
                                 break
 def red_shang(x1,x2,y1,y2):
     global turn
-    sum = 1
-    while(sum!=0):
-        if not(y1-x1==3 and y2-x2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2+1]=="* " and arr_red[x1+2][x2+1]=="* " ):
-            sum = 1
-        elif not(y1-x1==3 and x2-y2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2-1]=="* " and arr_red[x1+2][x2-1]=="* " ):
-            sum = 1
-        elif not(x1-y1==3 and y2-x2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2+1]=="* " and arr_red[x1-2][x2+1]=="* " ):
-            sum = 1
-        elif not(x1-y1==3 and x2-y2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2-1]=="* " and arr_red[x1-2][x2-1]=="* " ):
-            sum = 1
-        else:
-            sum = 0
+    while(1):
+        if(y1-x1==3 and y2-x2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2+1]=="* " and arr_red[x1+2][x2+1]=="* " ):
+            break
+        elif(y1-x1==3 and x2-y2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2-1]=="* " and arr_red[x1+2][x2-1]=="* " ):
+            break
+        elif(x1-y1==3 and y2-x2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2+1]=="* " and arr_red[x1-2][x2+1]=="* " ):
+            break
+        elif(x1-y1==3 and x2-y2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2-1]=="* " and arr_red[x1-2][x2-1]=="* " ):
             break
         main_run()
     if(arr_blue[y1][y2]=="* " and arr_red[y1][y2]=="* "):
@@ -672,23 +668,14 @@ def red_shang(x1,x2,y1,y2):
 
 def blue_shang(x1,x2,y1,y2):
     global turn
-    sum = 1
-    while(sum!=0):
-        if not(y1-x1==3 and y2-x2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2+1]=="* " and arr_red[x1+2][x2+1]=="* " ):
-            sum += 1
-            print("aa")
-        if not(y1-x1==3 and x2-y2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2-1]=="* " and arr_red[x1+2][x2-1]=="* " ):
-            sum += 1
-            print("bb")
-        if not(x1-y1==3 and y2-x2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2+1]=="* " and arr_red[x1-2][x2+1]=="* " ):
-            sum += 1
-            print("cc")
-        if not(x1-y1==3 and x2-y2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2-1]=="* " and arr_red[x1-2][x2-1]=="* " ):
-            sum += 1
-            print("dd")
-        if(sum==1):
-            sum = 0
-            print("ggggg")
+    while(1):
+        if(y1-x1==3 and y2-x2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2+1]=="* " and arr_red[x1+2][x2+1]=="* " ):
+            break
+        if(y1-x1==3 and x2-y2==2 and arr_blue[x1+1][x2]=="* " and arr_red[x1+1][x2]=="* "and arr_blue[x1+2][x2-1]=="* " and arr_red[x1+2][x2-1]=="* " ):
+            break
+        if(x1-y1==3 and y2-x2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2+1]=="* " and arr_red[x1-2][x2+1]=="* " ):
+            break 
+        if(x1-y1==3 and x2-y2==2 and arr_blue[x1-1][x2]=="* " and arr_red[x1-1][x2]=="* "and arr_blue[x1-2][x2-1]=="* " and arr_red[x1-2][x2-1]=="* " ):
             break
         main_run()
     if(arr_blue[y1][y2]=="* " and arr_red[y1][y2]=="* "):
@@ -797,8 +784,5 @@ def main():
         else:
             Board()
             blue_run()
-
-
-
 
 main()
