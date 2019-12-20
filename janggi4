@@ -371,38 +371,109 @@ def blue_sa(x1,x2,y1,y2):
         turn = False
 
 def red_han(x1,x2,y1,y2):
-    global turn 
-    while not((abs(x1-y1)<=1 and abs(x2-y2)<=1) and (y2>=3 and y2<=5 and y1<=2) and (x1 !=y1 or x2!=y2) ):
-        print("기물을 움직일 수 없습니다.")
-        y1 = ord(Movepos_af1())-65
-        y2 = Movepos_af2()-1
-    
-    if(arr_blue[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
+    global turn
+    while True:
+        if not((abs(x1-y1)<=1 and abs(x2-y2)<=1) and (y2>=3 and y2<=5 and y1<=2) and (x1 !=y1 or x2!=y2)):
+            print("기물을 움직일 수 없습니다.")
+            y1 = ord(Movepos_af1())-65
+            y2 = Movepos_af2()-1
+
+        else:
+            if (x1 == 0 and x2 == 4):
+                if((y1 == 1 and y2 == 3) or (y1 == 1 and y2 == 5)):
+                    print("기물을 움직일 수 없습니다.")
+                    y1 = ord(Movepos_af1())-65
+                    y2 = Movepos_af2()-1
+                else:
+                    break
+            elif(x1 == 1 and x2 == 3):
+                if(y1 == 0 and y2 == 4 or y1 == 2 and y2 == 4):
+                    print("기물을 움직일 수 없습니다.")
+                    y1 = ord(Movepos_af1())-65
+                    y2 = Movepos_af2()-1
+                else:
+                    break            
+            elif(x1 == 1 and x2 == 5):
+                if(y1 == 0 and y2 == 4 or y1 == 2 and y2 == 4):
+                    print("기물을 움직일 수 없습니다.")
+                    y1 = ord(Movepos_af1())-65
+                    y2 = Movepos_af2()-1
+                else:
+                    break            
+            elif(x1 == 2 and x2 == 4):
+                if(y1 == 1 and y2 == 3 or  y1 == 1 and y2 == 5):
+                    print("기물을 움직일 수 없습니다.")
+                    y1 = ord(Movepos_af1())-65
+                    y2 = Movepos_af2()-1
+                else:
+                    break
+            else:
+                break
+ 
+    if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
         arr_red[y1][y2]="漢"
         arr_red[x1][x2]="* "
+        turn = False
     elif(arr_blue[y1][y2] != "* "):
         arr_red[y1][y2] = "漢"
         arr_red[x1][x2] = "* "
         arr_blue[y1][y2] = "* "
-    turn = False
+        turn = False
+        
 
 def blue_cho(x1,x2,y1,y2):
     global turn
-    while not((abs(x1-y1)<=1 and abs(x2-y2)<=1) and (y2>=3 and y2<=5 and y1>=6) and (x1 !=y1 or x2!=y2) ):
-        print("기물을 움직일 수 없습니다.")
-        y1 = ord(Movepos_af1())-65
-        y2 = Movepos_af2()-1
-        
-    if(arr_red[y1][y2]=="* " and arr_red[y1][y2]=="* "):
-        arr_blue[y1][y2] = "楚"
-        arr_blue[x1][x2] = "* "
+    while True:
+        if not((abs(x1-y1)<=1 and abs(x2-y2)<=1) and (y2>=3 and y2<=5 and y1>=6) and (x1 !=y1 or x2!=y2)):
+            print("기물을 움직일 수 없습니다.")
+            y1 = ord(Movepos_af1())-65
+            y2 = Movepos_af2()-1
 
-    elif(arr_red[y1][y2]!="* "):
+        else:
+            if (x1 == 9 and x2 == 4):
+                if((y1 == 8 and y2 == 3) or (y1 == 8 and y2 == 5)):
+                    print("기물을 움직일 수 없습니다.")
+                    y1 = ord(Movepos_af1())-65
+                    y2 = Movepos_af2()-1
+                else:
+                    break
+            elif(x1 == 8 and x2 == 3):
+                if(y1 == 7 and y2 == 4 or y1 == 9 and y2 == 4):
+                    print("기물을 움직일 수 없습니다.")
+                    y1 = ord(Movepos_af1())-65
+                    y2 = Movepos_af2()-1
+                else:
+                    break
+
+            elif(x1 == 8 and x2 == 5):
+                if(y1 == 7 and y2 == 4 or y1 == 9 and y2 == 4):
+                    print("기물을 움직일 수 없습니다.")
+                    y1 = ord(Movepos_af1())-65
+                    y2 = Movepos_af2()-1
+                else:
+                    break
+
+            elif(x1 == 7 and x2 == 4):
+                if(y1 == 8 and y2 == 3 or  y1 == 8 and y2 == 5):
+                    print("기물을 움직일 수 없습니다.")
+                    y1 = ord(Movepos_af1())-65
+                    y2 = Movepos_af2()-1
+                else:
+                    break
+            else:
+                break
+            
+    if(arr_red[y1][y2]=="* " and arr_blue[y1][y2]=="* "):
+        arr_blue[y1][y2]="楚"
+        arr_blue[x1][x2]="* "
+        turn = True
+       
+    elif(arr_red[y1][y2] != "* "):
         arr_blue[y1][y2] = "楚"
         arr_blue[x1][x2] = "* "
         arr_red[y1][y2] = "* "
-
-    turn = True
+        turn = True
+        
 
 def red_ma(x1,x2,y1,y2):
     global turn
